@@ -78,14 +78,14 @@ const AdminLogin = ()=>{
         })
 
     return (
-        <div>
+        <div className="flex bg-gradient-to-r from-cyan-200 to-pink-300 min-h-screen flex-col justify-center items-center px-6 py-12 lg:px-8 ">
             {
                 isLogin ?(
                     <AdminHome/>
                 ):(
-                    <div>
-                        <div>
-                            <h2>Login</h2>
+                    <div className="border  py-10 px-20 bg-white rounded-2xl drop-shadow-lg">
+                        <div  className="pb-7 sm:max-auto sm:w-full sm:max-w-sm ">
+                            <h2 className="font-bold font-sans ms-16 text-3xl pb-5">Login</h2>
                         </div>
                         <div>
                             <form 
@@ -93,7 +93,7 @@ const AdminLogin = ()=>{
                             action="#"
                             method="POST">
                                 <div>
-                                    <div>
+                                    <div className="flex flex-col">
                                         <label>Email</label>
                                         <input 
                                         type="text"
@@ -103,13 +103,14 @@ const AdminLogin = ()=>{
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         required
+                                        className="block w-full rounded-md mt-2  bg-gray-100 px-3 py-2.5 focus:outline-pink-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm/6"
                                         />
                                         {touched.email && errors.email ? (
                                             <p className="text-red-500 text-sm mt-1">{errors.email}</p>
                                         ) : null}
                                     </div>
-                                    <div>
-                                        <label>Password</label>
+                                    <div className="flex flex-col">
+                                        <label className="mt-5">Password</label>
                                         <input 
                                         type="password"
                                         autoComplete="off"
@@ -118,30 +119,37 @@ const AdminLogin = ()=>{
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         required
+                                        className="block w-full rounded-md mt-2  bg-gray-100 px-3 py-2.5 focus:outline-pink-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm/6"
                                         />
                                         {touched.password && errors.password ? (
                                             <p className="text-red-500 text-sm mt-1">{errors.password}</p>
                                         ) : null}
                                     </div>
-                                    <div className="text-sm">
+                                    <div className="text-sm mt-1 items-end">
                                         <Link to='/adminForgotPassword'  
-                                        className="font-semibold text-indigo-600 hover:text-indigo-500">
+                                        className="font-semibold flex justify-end text-indigo-600 justify-end hover:text-indigo-800">
                                             Forgot password?
                                         </Link>
                                     </div>
                                 </div>
 
-                                <div>
-                                    <button>
+                                <div className="flex justify-center">
+                                    <button
+                                        className="mt-9 bg-cyan-400 hover:bg-cyan-300 hover:text-blue-400 text-white mb-3 border px-20 py-2 rounded-3xl"
+
+                                    >
                                         Login
                                     </button>
                                 </div>
                             </form>
-                            <p className="mt-10 text-center text-sm/6 text-gray-100">
+                            <p 
+                            className="flex justify-center"
+                            >
                             Not a member?
                             <Link
                                 to="/"
-                                className="font-semibold text-orange-600 hover:text-orange-500"
+                                className="text-red-600 ms-1 tracking-tight hover:text-blue-800 hover:underline"
+
                             >
                                 Please Sign Up
                             </Link>

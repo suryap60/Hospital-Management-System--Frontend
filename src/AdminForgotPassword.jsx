@@ -56,52 +56,58 @@ const ForgotPassword = ()=>{
     })
 
     return(
-        <div>
-            <div>
-                <h2>Forgot Password</h2>
-            </div>
+        <div className="flex bg-gradient-to-r from-cyan-200 to-cyan-600 min-h-screen flex-col justify-center items-center px-6 py-12 lg:px-8 ">
+            <div className="border  py-12 px-20 bg-white rounded-2xl drop-shadow-lg">
+                <div className="pb-7 sm:max-auto sm:w-full sm:max-w-sm ">
+                    <h2 className="font-bold font-sans  text-3xl pb-5">Forgot Password</h2>
+                </div>
 
-            <div>
-                <form onSubmit={handleSubmit}>
-                    <div>
+                <div>
+                    <form onSubmit={handleSubmit}>
                         <div>
-                            <label>Email</label>
+                            <div>
+                                <label  className="flex flex-col">Email</label>
+                                <input 
+                                type="text"
+                                autoComplete="off" 
+                                name="email"
+                                value={values.email}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                required
+                                className="block w-full rounded-md mt-2  bg-gray-100 px-3 py-2.5 focus:outline-cyan-600 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm/6"
+                                />
+                                {touched.email && errors.email ? (
+                                    <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                                ) : null}
+                            </div>
+
+                            <div className="mt-5">
+                            <label  className="flex flex-col">New Password</label>
                             <input 
-                            type="text"
-                            autoComplete="off" 
-                            name="email"
-                            value={values.email}
+                            type="password"
+                            autoComplete="off"
+                            name="newPassword"
+                            value={values.newPassword}
                             onChange={handleChange}
                             onBlur={handleBlur}
                             required
+                            className="block w-full rounded-md mt-2  bg-gray-100 px-3 py-2.5 focus:outline-cyan-600 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm/6"
                             />
-                            {touched.email && errors.email ? (
-                                <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                            {touched.newPassword && errors.newPassword ? (
+                                <p className="text-red-500 text-sm mt-1">{errors.newPassword}</p>
                             ) : null}
+                            </div>
                         </div>
-
-                        <div>
-                        <label>New Password</label>
-                        <input 
-                        type="password"
-                        autoComplete="off"
-                        name="newPassword"
-                        value={values.newPassword}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        required
-                        />
-                        {touched.newPassword && errors.newPassword ? (
-                            <p className="text-red-500 text-sm mt-1">{errors.newPassword}</p>
-                        ) : null}
+                        <div className="flex justify-center">
+                            <button
+                                className="mt-12 bg-cyan-600 px-28 text-white mb-3  py-2 rounded-3xl"
+                            >
+                                Confirm
+                            </button>
                         </div>
-                    </div>
-                    <div>
-                        <button>
-                            Confirm
-                        </button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     )

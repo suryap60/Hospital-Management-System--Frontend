@@ -20,7 +20,7 @@ const AdminHome = ()=>{
             <form action="" onSubmit={handleSubmit}>
             <button
             type="submit"
-             class="bg-transparent hover:bg-pink-500 text-pink-700 font-semibold hover:text-white py-2 px-4 border border-pink-500 hover:border-transparent rounded"
+             className="bg-transparent hover:bg-pink-500 text-pink-700 font-semibold hover:text-white py-2 px-4 border border-pink-500 hover:border-transparent rounded"
             >Logout</button>
             </form>
         </div>

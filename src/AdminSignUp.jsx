@@ -31,8 +31,6 @@ const AdminSignUp = ()=>{
         }
         catch(error){
             if(error.response && error.response.status == 409){
-                // const errorMessage = error.response.data.message || "*This email is already registered";
-                // setFieldError("email", errorMessage);
                 Swal.fire({
                     icon: "warning",
                     // title: "Incorrect EmailId",

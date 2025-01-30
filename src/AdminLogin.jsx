@@ -47,7 +47,7 @@ const AdminLogin = ()=>{
                     title: "Incorrect EmailId",
                     text: "The email that you've entered is incorrect.Please try again.",
                     showConfirmButton: false,
-                    timer: 3000
+                    timer: 1500
                   });
                 } 
                 if (error.response.status === 400 && errorMessage === "Password is incorrect") {
@@ -55,7 +55,7 @@ const AdminLogin = ()=>{
                     title: "Incorrect Password",
                     text: "The password that you've entered is incorrect.Please try again.",
                     showConfirmButton: false,
-                    timer: 3000
+                    timer: 1500
                   });
                 } 
                

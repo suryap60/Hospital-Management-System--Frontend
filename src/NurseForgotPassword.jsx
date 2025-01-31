@@ -25,14 +25,15 @@ const NurseForgotPassword = () => {
                 showConfirmButton:false,
                 timer:1500
             });
-            action.resetForm()
             navigate('/nurselogin')
+            action.resetForm()
+            
         }catch(error){
             if (error.response) {
-                const errorMessage = error.response.data.message; // Backend sends error messages in message
+                const errorMessage = error.response.data.message; 
                 
-                // Handling for specific errors based on the backend response
-                if (error.response.status === 404 && errorMessage === "Admin Not Found") {
+              
+                if (error.response.status === 404 && errorMessage === "Nurse Not Found") {
                   Swal.fire({
                     title: "Email doesn't Exist",
                     text: "The email that you've entered is doesn't exist.Please try again.",

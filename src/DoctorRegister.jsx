@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { DoctorRegisterValidationSchema } from "./assets/ValidationSchemaDoctorRegister"
 import Swal from "sweetalert2"
 
+
 const RegisterDoctor = () => {
 
     const navigate = useNavigate()
@@ -68,7 +69,8 @@ const RegisterDoctor = () => {
 
     
     return(
-        <div className="flex bg-gradient-to-r from-slate-200 to-slate-500 min-h-screen justify-center items-center px-6 py-12 lg:px-8 ">
+        <div 
+        className="flex bg-gradient-to-r from-slate-200 to-slate-500 min-h-screen justify-center items-center px-6 py-12 lg:px-8 ">
             <div className="border  py-6 px-20 bg-white rounded-2xl drop-shadow-lg justify-center">
                 <div className="pb-5 sm:max-auto sm:w-full sm:max-w-sm ">
                     <h2 className="font-bold font-sans text-slate-600 text-3xl pb-5">Create a new account</h2>

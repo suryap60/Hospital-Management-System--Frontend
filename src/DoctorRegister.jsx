@@ -1,0 +1,204 @@
+import axios from "axios"
+import { useFormik } from "formik"
+import { Link, useNavigate } from "react-router-dom"
+import { DoctorRegisterValidationSchema } from "./assets/ValidationSchemaDoctorRegister"
+import Swal from "sweetalert2"
+
+
+const RegisterDoctor = () => {
+
+    const navigate = useNavigate()
+    
+    const initalValues =  {
+        fullName: "",
+        email: "",
+        phone: "",
+        specialty: "",
+        password: ""
+    }
+
+    const onSubmit = async(values,action) => {
+        try{
+            await axios.post(
+                "http://localhost:2000/api/registerDoctor",
+                values
+            );
+
+            action.resetForm()
+            Swal.fire({
+                icon: "success",
+                title: "Success!",
+                text: " Congratulation,your account has been successfully created",
+                showConfirmButton:false,
+                timer:1500
+                
+            });
+            navigate('/loginDoctor')
+
+        }
+        catch(error){
+            
+            if(error.response && error.response.status == 409){
+                Swal.fire({
+                    icon: "warning",
+                    // title: "Incorrect EmailId",
+                    text: "This email is already registered!",
+                    });
+            }
+            else{
+                setFieldError(
+                    "email",
+                    error.message
+                    );
+            }
+        }
+        
+    }
+
+    const { 
+        values, 
+        errors, 
+        handleSubmit, 
+        handleChange, 
+        handleBlur, 
+        touched} = useFormik({
+            initialValues:initalValues,
+            validationSchema:DoctorRegisterValidationSchema,
+            onSubmit:onSubmit
+        })
+
+    
+    return(
+        <div 
+        className="flex bg-gradient-to-r from-slate-200 to-slate-500 min-h-screen justify-center items-center px-6 py-12 lg:px-8 ">
+            <div className="border  py-6 px-20 bg-white rounded-2xl drop-shadow-lg justify-center">
+                <div className="pb-5 sm:max-auto sm:w-full sm:max-w-sm ">
+                    <h2 className="font-bold font-sans text-slate-600 text-3xl pb-5">Create a new account</h2>
+                </div>
+
+                <form onSubmit={handleSubmit} method="POST">
+                    <div>
+                        <div className="flex justify-between gap-3">
+                            <div className="flex flex-col">
+                                <label>Full Name</label>
+                                <input 
+                                type="text"
+                                autoComplete="off"
+                                autoSave="off"
+                                name="fullName"
+                                value={values.fullName}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                required
+                                className="block w-full rounded-md mt-2  bg-slate-100 px-3 py-2.5 focus:outline-slate-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm/6"
+                                />
+                                {touched.fullName && errors.fullName ? (
+                                    <p className="text-red-500 text-sm mt-1">{errors.fullName}</p>
+                                ) : null}
+                            </div>
+
+                            <div className="flex flex-col">
+                                <label >Email</label>
+                                <input 
+                                type="email"
+                                autoComplete="off"
+                                autoSave="off"
+                                name="email"
+                                value={values.email}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                required
+                                className="block w-full rounded-md mt-2  bg-slate-100 px-3 py-2.5 focus:outline-slate-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm/6"
+                                />
+                                {touched.email && errors.email ? (
+                                    <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                                ) : null}
+                            </div>
+
+                            <div className="flex flex-col">
+                                <label >Mobile Number</label>
+                                <input 
+                                type="string"
+                                autoComplete="off"
+                                    autoSave="off"
+                                    name="phone"
+                                    value={values.phone}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    required
+                                    className="block w-full rounded-md mt-2  bg-slate-100 px-3 py-2.5 focus:outline-slate-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm/6"
+                                />
+                                {touched.phone && errors.phone ? (
+                                    <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+                                ) : null}
+                            </div>
+                        </div>
+
+                        <div className="flex flex-col">
+                            <label className="mt-5">Specialty</label>
+                            <select 
+                            name="specialty" 
+                            value={values.specialty}  
+                            onChange={handleChange}   
+                            onBlur={handleBlur} 
+                            className="mt-2 block w-full rounded-md bg-slate-100 px-3 py-3.5 focus:outline-slate-400 focus:outline text-base  border-slate-400 text-gray-900 focus:outline focus:outline-none sm:text-sm/6">
+                                <option value="">Select Your Specialty</option>
+                                <option value="Cardiology">Cardiology</option>
+                                <option value="Dermatology">Dermatology</option>
+                                <option value="Neurology">Neurology</option>
+                                <option value="Pediatrics">Pediatrics</option>
+                                <option value="Orthopedics">Orthopedics</option>
+                            </select>
+                            {touched.specialty && errors.specialty ? (
+                                <p className="text-red-500 text-sm mt-1">{errors.specialty}</p>
+                            ) : null}
+                        </div>
+
+                        <div className="flex flex-col">
+                            <label className="mt-5">Password</label>
+                            <input 
+                            type="password"
+                            autoComplete="off"
+                            autoSave="off"
+                            name="password"
+                            value={values.password}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            required 
+                            className="block w-full rounded-md mt-2  bg-slate-100 px-3 py-2.5 focus:slate-pink-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm/6"
+                            />
+                            {touched.password && errors.password ? (
+                                <p className="text-red-500 text-sm mt-1">
+                                {errors.password}
+                                </p>
+                            ) : null}
+                        </div>
+
+                        <div className="flex justify-center">
+                            <button
+                            autoSave="off"
+                            className="mt-9 bg-slate-500  px-28 text-white mb-3  py-2 rounded-3xl"
+                            >
+                                Sign Up
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <p 
+                className="flex justify-center"
+                >
+                    Already have an account ?
+                    <Link
+                        to="/loginDoctor"
+                        className="text-red-600 ms-1 tracking-tight hover:text-blue-800 hover:underline"
+                    >
+
+                        sign In now
+                </Link>
+                </p>
+            </div>
+        </div>
+    )
+}
+
+export { RegisterDoctor}

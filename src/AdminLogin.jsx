@@ -87,15 +87,15 @@ const AdminLogin = ()=>{
                     <div
                     className="flex min-h-screen flex-col justify-center items-center px-6 py-12 lg:px-8 "
                     style={{
-                                backgroundImage: `url(${backgroundImageLogin})`,  // Correct path for the public folder
-                                backgroundSize: 'cover',
-                                backgroundPosition: 'center',
-                              }} 
+                            backgroundImage: `url(${backgroundImageLogin})`,  // Correct path for the public folder
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                        }} 
                     >
                         <div 
                         className="border py-10 px-20 w-1/3 bg-white rounded-2xl drop-shadow-lg"
                         style={{
-                            backgroundColor: "rgba(255, 255, 255, 0.6)", // Transparent white background for the form
+                            backgroundColor: "rgba(255, 255, 255, 0.7)", // Transparent white background for the form
                             backdropFilter: "blur(10px)", // Blur effect on the background
                             boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // Optional shadow for the form
                         }}
@@ -119,7 +119,7 @@ const AdminLogin = ()=>{
                                             onChange={handleChange}
                                             onBlur={handleBlur}
                                             required
-                                            className="block w-full rounded-md mt-2  bg-gray-100 py-2.5 focus:outline-pink-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm/6"
+                                            className="block w-full rounded-md mt-2  bg-sky-200 py-2.5 focus:outline-blue-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm/6"
                                             />
                                             {touched.email && errors.email ? (
                                                 <p className="text-red-500 text-sm mt-1">{errors.email}</p>
@@ -135,7 +135,7 @@ const AdminLogin = ()=>{
                                             onChange={handleChange}
                                             onBlur={handleBlur}
                                             required
-                                            className="block w-full rounded-md mt-2  bg-gray-100 px-3 py-2.5 focus:outline-pink-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm/6"
+                                            className="block w-full rounded-md mt-2  bg-sky-200 px-3 py-2.5 focus:outline-blue-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm/6"
                                             />
                                             {touched.password && errors.password ? (
                                                 <p className="text-red-500 text-sm mt-1">{errors.password}</p>
@@ -151,7 +151,7 @@ const AdminLogin = ()=>{
 
                                     <div className="flex justify-center">
                                         <button
-                                            className="mt-9 bg-cyan-400 hover:bg-cyan-300 hover:text-blue-400 text-white mb-3 px-20 py-2 rounded-3xl"
+                                            className="mt-9 bg-sky-400 hover:bg-cyan-300 hover:text-blue-400 text-white mb-3 px-20 py-2 rounded-3xl"
 
                                         >
                                             Login

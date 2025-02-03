@@ -3,7 +3,8 @@ import { useFormik } from "formik"
 import { Link, useNavigate } from "react-router-dom"
 import { DoctorRegisterValidationSchema } from "./assets/ValidationSchemaDoctorRegister"
 import Swal from "sweetalert2"
-
+import signupImage from './images/login.jpg'
+import backgroundImage from './images/bg.jpg'
 
 const RegisterDoctor = () => {
 
@@ -70,14 +71,27 @@ const RegisterDoctor = () => {
     
     return(
         <div 
-        className="flex bg-gradient-to-r from-slate-200 to-slate-500 min-h-screen justify-center items-center px-6 py-12 lg:px-8 ">
-            <div className="border  py-6 px-20 bg-white rounded-2xl drop-shadow-lg justify-center">
-                <div className="pb-5 sm:max-auto sm:w-full sm:max-w-sm ">
-                    <h2 className="font-bold font-sans text-slate-600 text-3xl pb-5">Create a new account</h2>
-                </div>
+        className="flex min-h-screen justify-center items-center px-3 py-9 lg:px-8 "
+       style={{
+            backgroundImage: `url(${backgroundImage})`,  // Correct path for the public folder
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            }}
+        >
+            <div 
+            className="border  py-6 px-20 rounded-2xl drop-shadow-lg justify-center"
+            style={{
+                backgroundColor: "rgba(255, 255, 255, 0.8)", // Transparent white background for the form
+                backdropFilter: "blur(10px)", // Blur effect on the background
+            }}
+            >
 
-                <form onSubmit={handleSubmit} method="POST">
+                <form onSubmit={handleSubmit} method="POST" className="flex">
+                    
                     <div>
+                        <div className="pb-5 sm:max-auto sm:w-full sm:max-w-sm ">
+                            <h2 className="font-bold font-sans text-slate-600 text-3xl pb-5">Create a new account</h2>
+                        </div>
                         <div className="flex justify-between gap-3">
                             <div className="flex flex-col">
                                 <label>Full Name</label>
@@ -181,11 +195,12 @@ const RegisterDoctor = () => {
                             >
                                 Sign Up
                             </button>
+                            
                         </div>
                     </div>
                 </form>
                 <p 
-                className="flex justify-center"
+                className="flex justify-end px-40"
                 >
                     Already have an account ?
                     <Link

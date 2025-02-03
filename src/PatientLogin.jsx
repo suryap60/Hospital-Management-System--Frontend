@@ -3,7 +3,8 @@ import React from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { Link, useNavigate } from 'react-router-dom';
-import { LoginValidationSchema } from './schema/LoginValidationSchema';
+import { ValidationLoginSchema } from './assets/ValidationLoginSchema';
+
 
 
 const PatientLogin = () => {
@@ -23,7 +24,7 @@ const PatientLogin = () => {
     touched,
   } = useFormik({
     initialValues: initialValues,
-    validationSchema:LoginValidationSchema,
+    validationSchema:ValidationLoginSchema,
     onSubmit: async (values, action) => {
       try {
         const response = await axios.post("http://localhost:2000/api/login", values);

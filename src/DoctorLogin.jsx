@@ -3,10 +3,10 @@ import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import { useState } from "react"
 import Swal from "sweetalert2"
-import { ValidationLoginDoctorSchema } from "./assets/ValidationLoginDoctorSchema"
 import { DoctorHome } from "./DoctorHome"
 import LoginImage from './images/login.jpg'
 import DoctorImage from './images/doctor.jpg'
+import { ValidationLoginSchema } from "./assets/ValidationLoginSchema"
 
 
 const LoginDoctor = ()=>{
@@ -78,7 +78,7 @@ const LoginDoctor = ()=>{
         touched,
         } = useFormik({
             initialValues : initalValues,
-            validationSchema : ValidationLoginDoctorSchema,
+            validationSchema : ValidationLoginSchema,
             onSubmit : onSubmit,
         })
 

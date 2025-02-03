@@ -6,6 +6,7 @@ import Swal from "sweetalert2"
 import { ValidationLoginDoctorSchema } from "./assets/ValidationLoginDoctorSchema"
 import { DoctorHome } from "./DoctorHome"
 import LoginImage from './images/login.jpg'
+import DoctorImage from './images/doctor.jpg'
 
 
 const LoginDoctor = ()=>{
@@ -87,16 +88,31 @@ const LoginDoctor = ()=>{
                 isLogin ?(
                     <DoctorHome/>
                 ):(
-                    <div className="flex bg-gradient-to-r from-teal-700 to-teal-800 min-h-screen justify-center items-center px-6 py-12 lg:px-8 ">
-                        <div>
-                            <img 
-                            src={LoginImage} 
-                            alt="login" 
-                            width="316"
-                            className="object-cover rounded-l-2xl drop-shadow-lg "
-                            />
-                        </div>
-                        <div className="border  py-10 px-20 bg-white rounded-r-2xl drop-shadow-lg">
+                    <div 
+                    className="flex  min-h-screen justify-center items-center px-6 py-12 lg:px-8 "
+                    style={{
+                        backgroundImage: `url(${LoginImage})`,  // Correct path for the public folder
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                    }} 
+                        >
+                            <div
+                            
+                            >
+                                <img 
+                                className="h-1/2 rounded-l-2xl"
+                                src={DoctorImage} alt="doctor" width='464' />
+                            </div>
+        
+                        
+                        <div 
+                        className="border w-1/3 py-9 px-14  rounded-r-2xl drop-shadow-lg"
+                        style={{
+                            backgroundColor: "rgba(255, 255, 255, 0.7)", // Transparent white background for the form
+                            backdropFilter: "blur(10px)", // Blur effect on the background
+                            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // Optional shadow for the form
+                        }}
+                        >
                             <div  className="pb-7 sm:max-auto sm:w-full sm:max-w-sm ">
                                 <h2 className="font-bold font-sans ms-16 text-3xl pb-5">Login</h2>
                             </div>
@@ -148,7 +164,7 @@ const LoginDoctor = ()=>{
 
                                     <div className="flex justify-center">
                                         <button
-                                            className="mt-9 bg-teal-700 border-none hover:bg-teal-600 hover:text-gray-100 text-white mb-3 border px-20 py-2 rounded-3xl"
+                                            className="mt-9 bg-teal-700 border-none hover:bg-sky-600 hover:text-gray-100 text-white mb-3 px-20 py-2 rounded-3xl"
 
                                         >
                                             Login
@@ -171,6 +187,7 @@ const LoginDoctor = ()=>{
                             </div>
 
                         </div>
+                       
                     </div>
                 )
                 

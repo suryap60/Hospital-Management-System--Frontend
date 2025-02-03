@@ -3,10 +3,12 @@ import { Link, useNavigate } from "react-router-dom"
 import { ValidationSchema } from "./assets/ValidationSchema";
 import axios from "axios";
 import Swal from 'sweetalert2'
+import backgroundImage from './images/signup.jpeg'
 
 const AdminSignUp = ()=>{
 
     const navigation = useNavigate()
+    
 
     const initialValues = {
         adminName: "",
@@ -65,10 +67,23 @@ const AdminSignUp = ()=>{
 
     return(
         <>
-        <div className="flex bg-gradient-to-r from-pink-200 to-pink-300 min-h-screen flex-col justify-center items-center px-6 py-12 lg:px-8 ">
-            <div className="border  py-12 px-20 bg-white rounded-2xl drop-shadow-lg">
+        <div className="flex min-h-screen justify-center items-center px-6 py-12 lg:px-8 "
+        style={{
+            backgroundImage: `url(${backgroundImage})`,  // Correct path for the public folder
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
+            <div 
+            className="py-12 px-20 rounded-2xl drop-shadow-lg"
+            style={{
+                backgroundColor: "rgba(255, 255, 255, 0.6)", // Transparent white background for the form
+                backdropFilter: "blur(10px)", // Blur effect on the background
+                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // Optional shadow for the form
+            }}
+            >
                 <div className="pb-7 sm:max-auto sm:w-full sm:max-w-sm ">
-                    <h2 className="font-bold font-sans  text-3xl pb-5">Create a new account</h2>
+                    <h2 className="font-bold font-sans  text-3xl pb-5">Get Started as an Admin</h2>
                 </div>
 
                 <div >
@@ -85,7 +100,7 @@ const AdminSignUp = ()=>{
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 required
-                                className="block w-full rounded-md mt-2  bg-pink-100 px-3 py-2.5 focus:outline-pink-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm/6"
+                                className="block w-full rounded-md mt-2  bg-gray-100 px-3 py-2.5 focus:outline-blue-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm/6"
                                 />
 
                                 {touched.adminName && errors.adminName ? (
@@ -103,7 +118,7 @@ const AdminSignUp = ()=>{
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 required
-                                className="block w-full rounded-md mt-2  bg-pink-100 px-3 py-2.5 focus:outline-pink-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm/6"
+                                className="block w-full rounded-md mt-2  bg-gray-100 px-3 py-2.5 focus:outline-blue-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm/6"
                             />
 
                             {touched.email && errors.email ? (
@@ -121,7 +136,7 @@ const AdminSignUp = ()=>{
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 required
-                                className="block w-full rounded-md mt-2 bg-pink-100 px-3 py-2.5 focus:outline-pink-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-400 focus:outline focus:outline-none sm:text-sm/6"
+                                className="block w-full rounded-md mt-2 bg-gray-100 px-3 py-2.5 focus:outline-blue-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-400 focus:outline focus:outline-none sm:text-sm/6"
                             />
                             {touched.password && errors.password ? (
                                 <p className="text-red-500 text-sm mt-1">
@@ -133,7 +148,7 @@ const AdminSignUp = ()=>{
                         <div className="flex justify-center">
                             <button
                                 autoSave="off"
-                                className="mt-9 bg-pink-500  px-28 text-white mb-3  py-2 rounded-3xl"
+                                className="mt-9 bg-blue-500  px-28 text-white mb-3  py-2 rounded-3xl"
                             >
                                 Register
                             </button>
@@ -144,7 +159,7 @@ const AdminSignUp = ()=>{
                     Already have an account ?
                     <Link
                         to="/login"
-                        className="text-red-600 ms-1 tracking-tight hover:text-blue-800 hover:underline"
+                        className="text-red-500 ms-1 tracking-tight hover:text-blue-800 hover:underline"
                     >
 
                         sign In now

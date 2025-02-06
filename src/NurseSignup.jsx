@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useFormik } from "formik";
-import { SignUpValidationSchema } from "./schema/SignUpValidationSchema";
+import { NurseSignUpValidationSchema } from "./assets/NurseValidationSchema";
 
 const NurseSignup = () => {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ const NurseSignup = () => {
 
   const formik = useFormik({
     initialValues,
-    validationSchema: SignUpValidationSchema,
+    validationSchema: NurseSignUpValidationSchema,
     onSubmit: async (values, { resetForm, setFieldError }) => {
       try {
         const requestData = { ...values, profilePicture };

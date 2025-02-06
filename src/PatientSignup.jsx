@@ -3,7 +3,8 @@ import axios from "axios";
 import { useNavigate ,Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useFormik } from "formik";
-import { SignUpValidationSchema } from "./schema/SignUpValidationSchema";
+import { SignUpValidationSchema } from "./assets/PatientValidationSchema.jsx";
+
 
 const PatientSignup = () => {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const PatientSignup = () => {
     validationSchema: SignUpValidationSchema,
     onSubmit: async (values, action) => {
       try {
-        await axios.post("http://localhost:2000/api/register", values);
+        await axios.post("http://localhost:2000/api/patientregister", values);
         Swal.fire({
           icon: "success",
           title: "Success!",
@@ -30,7 +31,7 @@ const PatientSignup = () => {
           showConfirmButton: false,
           timer: 4000,
         });
-        navigate("/login");
+        navigate("/patientlogin");
         action.resetForm();
       } catch (error) {
         if (error.response?.status === 409) {

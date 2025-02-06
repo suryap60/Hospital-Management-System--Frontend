@@ -37,8 +37,8 @@ function App() {
 
 
             {/* Patient */}
-            <Route path='/login' element={<PatientLogin/>}></Route>
-            <Route path="/register" element ={<PatientSignup/>}></Route>
+            <Route path='/patientlogin' element={<PatientLogin/>}></Route>
+            <Route path="/patientregister" element ={<PatientSignup/>}></Route>
             <Route path="/home" element={<Home/>}></Route>
 
             {/* <Route path="/forgotpassword" element={<ForgotPassword/>}></Route> */}

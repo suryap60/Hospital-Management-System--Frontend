@@ -1,5 +1,8 @@
 import { useNavigate } from "react-router-dom"
 import Swal from "sweetalert2"
+import { DoctorNavbar } from "./DoctorNavbar"
+
+
 
 const DoctorHome = ()=>{
     const navigation = useNavigate()
@@ -14,6 +17,8 @@ const DoctorHome = ()=>{
     }
     return(
         <div className="flex justify-center items-center">
+
+            <DoctorNavbar/>
             home
 
             <form action="" onSubmit={handleSubmit}>

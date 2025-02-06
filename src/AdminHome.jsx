@@ -15,6 +15,7 @@ const AdminHome = ()=>{
     }
     return(
         <div className="flex justify-center items-center">
+            
             home
 
             <form action="" onSubmit={handleSubmit}>

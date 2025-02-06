@@ -4,6 +4,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { Link, useNavigate } from 'react-router-dom';
 import { ValidationLoginSchema } from './assets/ValidationLoginSchema';
+import { useFormik } from 'formik';
 
 
 
@@ -27,7 +28,7 @@ const PatientLogin = () => {
     validationSchema:ValidationLoginSchema,
     onSubmit: async (values, action) => {
       try {
-        const response = await axios.post("http://localhost:2000/api/login", values);
+        const response = await axios.post("http://localhost:2000/api/patientlogin", values);
         
         if (response.status === 200) {
           const { accessToken, data } = response.data;

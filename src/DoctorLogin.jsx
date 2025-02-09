@@ -89,16 +89,15 @@ const LoginDoctor = ()=>{
                     <DoctorHome/>
                 ):(
                     <div 
-                    className="flex  min-h-screen justify-center items-center px-6 py-12 lg:px-8 "
+                    className="flex  min-h-screen justify-center items-center px-6 py-12 lg:px-8 md:px-8"
                     style={{
                         backgroundImage: `url(${LoginImage})`,  // Correct path for the public folder
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                     }} 
                         >
-                            <div
-                            
-                            >
+                              <div className="hidden md:block">
+
                                 <img 
                                 className="h-1/2 rounded-l-2xl"
                                 src={DoctorImage} alt="doctor" width='464' />
@@ -106,7 +105,7 @@ const LoginDoctor = ()=>{
         
                         
                         <div 
-                        className="border w-1/3 py-9 px-14  rounded-r-2xl drop-shadow-lg"
+                        className="border w-full max-w-md md:w-1/3 max-w-lg lg:w-1/3 py-9 px-8 sm:px-14  rounded-r-2xl drop-shadow-lg"
                         style={{
                             backgroundColor: "rgba(255, 255, 255, 0.7)", // Transparent white background for the form
                             backdropFilter: "blur(10px)", // Blur effect on the background

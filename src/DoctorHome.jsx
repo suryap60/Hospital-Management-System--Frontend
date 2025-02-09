@@ -125,7 +125,7 @@ const DoctorHome  = () =>{
 
       </div>
 
-      <div className="flex-1 p-6 relative">
+      <div className="flex-1 p-6 relative ml-64">
           {/* Menu Button */}
         <button
           className="fixed top-4 right-4 z-50 p-2 lg:hidden"
@@ -136,7 +136,8 @@ const DoctorHome  = () =>{
       </div>
 
       {/* rendering -dashboard status */}
-      <div className="grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+      <div className="w-full max-w-6xl mx-auto me-96 px-4 md:px-6 lg:px-8">
+      <div className="grid grid-col-1 md:grid-cols-3 lg:grid-cols-3 gap-4 p-4">
         { stats?.map((stat, index)=>(
           <div key={index} className="bg-white h-48 p-6 rounded-lg shadow">
             <div className="flex items-center justify-between">
@@ -148,6 +149,8 @@ const DoctorHome  = () =>{
           </div>
       ))}
       </div>
+      </div>
+      
 
 
 

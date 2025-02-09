@@ -1,12 +1,15 @@
 import './App.css';
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from "formik";
 import { ValidationLoginSchema } from './assets/ValidationLoginSchema';
-
+import nurseloginimage from './images/nurselogin.jpg'
+import { NurseHome } from './NurseHome';
 
 const NurseLogin = () => {
+     const [isLogin, setisLogin] = useState(false)
     const navigate = useNavigate();
 
     const initialValues = {
@@ -42,7 +45,7 @@ const NurseLogin = () => {
             });
   
             // Redirect to home
-            navigate('/home');
+            navigate('/nursehome');
             action.resetForm();
           }
         } catch (err) {
@@ -56,60 +59,108 @@ const NurseLogin = () => {
     });
   
     return (
-      <div className="max-w-md mx-auto p-8 bg-gradient-to-r from-pink-100 to-purple-100 shadow-xl rounded-lg font-amore">
-        <h2 className="text-3xl font-semibold text-center text-gray-800 mb-6">Login</h2>
-  
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-600">Email:</label>
-            <input
-              type="email"
-              placeholder="Enter valid email"
-              id="email"
-              name="email"
-              value={values.email}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              required
-              className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-            />
-            {errors.email && touched.email && <div className="text-red-500 text-sm">{errors.email}</div>}
-          </div>
-  
-          <div className="mb-6">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-600">Password:</label>
-            <input
-              type="password"
-              placeholder="Enter valid password"
-              id="password"
-              name="password"
-              value={values.password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              required
-              className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-            />
-            {errors.password && touched.password && <div className="text-red-500 text-sm">{errors.password}</div>}
-          </div>
-  
-          <button
-            type="submit"
-            className="w-full py-3 bg-purple-300 text-white font-semibold rounded-md hover:bg-purple-400 transition"
-          >
-            Login
-          </button>
-        </form>
-  
-        <div className="text-center mt-4 text-gray-600">
-          <Link to="/forgotpassword" className="text-yellow-400 hover:underline">Forgot Password?</Link>
-        </div>
-  
-        <p className="text-center mt-4 text-gray-600">
-          Don't have an account?{" "}
-          <Link to="/signup" className="text-yellow-400 hover:underline">Sign Up</Link>
-        </p>
+      <div >
+          {
+              isLogin ?(
+                  <NurseHome/>
+              ):( 
+                  <div
+                  className="flex min-h-screen flex-col justify-center items-center px-6 py-12 lg:px-8 "
+                  style={{
+                          backgroundImage: `url(${nurseloginimage})`,  // Correct path for the public folder
+                          backgroundSize: 'cover',
+                          backgroundPosition: 'center',
+                      }} 
+                  >
+                      <div 
+                      className="border py-10 px-20 w-1/3 bg-white rounded-2xl drop-shadow-lg"
+                      style={{
+                          backgroundColor: "rgba(171, 167, 167, 0.8)", // Transparent white background for the form
+                          backdropFilter: "blur(10px)", // Blur effect on the background
+                          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // Optional shadow for the form
+                      }}
+                      >
+                          <div  className="pb-7 sm:max-auto sm:w-full sm:max-w-sm ">
+                              <h2 className="font-bold font-sans ms-16 text-3xl pb-5">Login</h2>
+                          </div>
+                          <div>
+                              <form 
+                              onSubmit={handleSubmit}
+                              action="#"
+                              method="POST">
+                                  <div>
+                                      <div className="flex flex-col">
+                                          <label>Email</label>
+                                          <input 
+                                          type="text"
+                                          autoComplete="off" 
+                                          name="email"
+                                          value={values.email}
+                                          onChange={handleChange}
+                                          onBlur={handleBlur}
+                                          required
+                                          className="block w-full rounded-md mt-2  bg-white py-2.5 focus:outline-blue-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm/6"
+                                          />
+                                          {touched.email && errors.email ? (
+                                              <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                                          ) : null}
+                                      </div>
+                                      <div className="flex flex-col">
+                                          <label className="mt-5">Password</label>
+                                          <input 
+                                          type="password"
+                                          autoComplete="off"
+                                          name="password"
+                                          value={values.password}
+                                          onChange={handleChange}
+                                          onBlur={handleBlur}
+                                          required
+                                          className="block w-full rounded-md mt-2  bg-white px-3 py-2.5 focus:outline-blue-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm/6"
+                                          />
+                                          {touched.password && errors.password ? (
+                                              <p className="text-red-500 text-sm mt-1">{errors.password}</p>
+                                          ) : null}
+                                      </div>
+                                      <div className="text-sm mt-1 items-end">
+                                          <Link to='/nurseforgotpassword'  
+                                          className="font-semibold flex justify-end text-indigo-600 justify-end hover:text-indigo-800">
+                                              Forgot password?
+                                          </Link>
+                                      </div>
+                                  </div>
+
+                                  <div className="flex justify-center">
+                                      <button
+                                          className="mt-9 bg-sky-400 hover:bg-white hover:text-blue-900 text-white mb-3 px-20 py-2 rounded-3xl"
+
+                                      >
+                                          Login
+                                      </button>
+                                  </div>
+                              </form>
+                              <p 
+                              className="flex justify-center"
+                              >
+                              Not a member?
+                              <Link
+                                  to="/nurseregister"
+                                  className="text-red-600 ms-1 tracking-tight hover:text-blue-800 hover:underline"
+
+                              >
+                                  Please Sign Up
+                              </Link>
+                              </p>
+
+                          </div>
+
+                      </div>
+                  </div>
+              )
+              
+          }
       </div>
-    );
+  )
+
   };
 
 export default NurseLogin

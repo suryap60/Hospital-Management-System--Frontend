@@ -3,7 +3,8 @@ import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useFormik } from "formik";
-import { NurseSignUpValidationSchema } from "./assets/NurseValidationSchema";
+import { SignUpValidationSchema } from "./schema/SignUpValidationSchema";
+import nursesignupimage from './images/nursesignup.jpg'
 
 const NurseSignup = () => {
   const navigate = useNavigate();
@@ -13,8 +14,9 @@ const NurseSignup = () => {
     name: "",
     email: "",
     password: "",
+    age:"",
     phone: "",
-    available: false,
+    profilePicture: "",
   };
 
   const handleProfilePictureChange = (e) => {
@@ -22,14 +24,14 @@ const NurseSignup = () => {
     if (file) {
       const reader = new FileReader();
       reader.readAsDataURL(file);
-      reader.onload = () => setProfilePicture(reader.result); // Convert image to Base64
+      reader.onload = () =>formik.setFieldValue("profilePicture", reader.result); // Convert image to Base64
       reader.onerror = (error) => console.error("Error converting image: ", error);
     }
   };
 
   const formik = useFormik({
     initialValues,
-    validationSchema: NurseSignUpValidationSchema,
+    validationSchema: SignUpValidationSchema,
     onSubmit: async (values, { resetForm, setFieldError }) => {
       try {
         const requestData = { ...values, profilePicture };
@@ -65,61 +67,106 @@ const NurseSignup = () => {
   const { values, handleChange, handleSubmit, handleBlur, errors, touched } = formik;
 
   return (
-    <div className="max-w-md mx-auto p-8 bg-gradient-to-r from-pink-100 to-purple-100 shadow-xl rounded-lg">
-      <h2 className="text-3xl font-semibold text-center text-gray-800 mb-6">Sign Up</h2>
-
-      <form onSubmit={handleSubmit}>
-        {["name", "email", "password", "phone"].map((field) => (
-          <div key={field} className="mb-4">
-            <label htmlFor={field} className="block text-sm font-medium text-gray-600">
-              {field.charAt(0).toUpperCase() + field.slice(1)}:
-            </label>
-            <input
-              type={field === "password" ? "password" : "text"}
-              id={field}
-              name={field}
-              value={values[field]}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500"
-            />
-            {touched[field] && errors[field] && <p className="text-red-500 text-xs">{errors[field]}</p>}
-          </div>
-        ))}
-
-        <div className="mb-4">
-          <label htmlFor="profilePicture" className="block text-sm font-medium text-gray-600">Profile Picture:</label>
-          <input
-            type="file"
-            id="profilePicture"
-            name="profilePicture"
-            accept="image/*"
-            onChange={handleProfilePictureChange}
-            className="w-full p-2 mt-2 border border-gray-300 rounded-md"
-          />
+    <div className="flex min-h-screen justify-center items-center px-3 py-9 lg:px-8"
+        style={{
+            backgroundImage: `url(${nursesignupimage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+        }}>
+        <div className="border py-6 px-20 rounded-2xl drop-shadow-lg justify-center"
+            style={{
+                backgroundColor: "rgba(171, 167, 167, 0.8)",
+                backdropFilter: "blur(10px)",
+            }}>
+            <form onSubmit={handleSubmit} method="POST" className="flex flex-col">
+                <div className="pb-5 sm:max-auto sm:w-full sm:max-w-sm">
+                    <h2 className="font-bold font-sans text-slate-600 text-3xl pb-5 text-center">Create a new account</h2>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                    <div className="flex flex-col">
+                        <label>Full Name</label>
+                        <input 
+                            type="text"
+                            name="name"
+                            value={values.name || ""}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            required
+                            className="w-full rounded-md mt-2 bg-slate-100 px-3 py-2.5 border-slate-400 text-gray-900 placeholder:text-gray-800 focus:outline-none"
+                        />
+                    </div>
+                    <div className="flex flex-col">
+                        <label>Email</label>
+                        <input 
+                            type="email"
+                            name="email"
+                            value={values.email || ""}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            required
+                            className="w-full rounded-md mt-2 bg-slate-100 px-3 py-2.5 border-slate-400 text-gray-900 placeholder:text-gray-800 focus:outline-none"
+                        />
+                    </div>
+                    <div className="flex flex-col">
+                        <label>Mobile Number</label>
+                        <input 
+                            type="text"
+                            name="phone"
+                            value={values.phone || ""}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            required
+                            className="w-full rounded-md mt-2 bg-slate-100 px-3 py-2.5 border-slate-400 text-gray-900 placeholder:text-gray-800 focus:outline-none"
+                        />
+                    </div>
+                    <div className="flex flex-col">
+                        <label>Age</label>
+                        <input 
+                            type="number"
+                            name="age"
+                            value={values.age || ""}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            required
+                            className="w-full rounded-md mt-2 bg-slate-100 px-3 py-2.5 border-slate-400 text-gray-900 placeholder:text-gray-800 focus:outline-none"
+                        />
+                    </div>
+                </div>
+                <div className="flex flex-col mt-4">
+                    <label>Password</label>
+                    <input 
+                        type="password"
+                        name="password"
+                        value={values.password || ""}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        required 
+                        className="w-full rounded-md mt-2 bg-slate-100 px-3 py-2.5 border-slate-400 text-gray-900 placeholder:text-gray-800 focus:outline-none"
+                    />
+                </div>
+                <div className="flex flex-col mt-4">
+                    <label>Profile Picture</label>
+                    <input 
+                        type="file"
+                        name="profilePicture"
+                        accept="image/*"
+                        onChange={handleProfilePictureChange}
+                        className="w-full rounded-md mt-2 bg-slate-100 px-3 py-2.5 border-slate-400 text-gray-900 focus:outline-none"
+                    />
+                </div>
+                <div className="flex justify-center">
+                    <button className="mt-6 bg-slate-500 px-28 text-white hover:bg-white hover:text-blue-900 py-2 rounded-3xl">
+                        Sign Up
+                    </button>
+                </div>
+            </form>
+            <p className="flex justify-center mt-4">
+                Already have an account? 
+                <Link to="/nurselogin" className="text-red-600 ms-1 tracking-tight hover:text-blue-800 hover:underline">
+                    Log In
+                </Link>
+            </p>
         </div>
-
-        <div className="mb-4 flex items-center">
-          <input
-            type="checkbox"
-            id="available"
-            name="available"
-            checked={values.available}
-            onChange={handleChange}
-            className="mr-2"
-          />
-          <label htmlFor="available" className="text-sm text-gray-600">Available for work?</label>
-        </div>
-
-        <button type="submit" className="w-full py-3 bg-pink-300 text-white font-semibold rounded-md hover:bg-pink-400 transition">
-          Signup
-        </button>
-      </form>
-
-      <p className="text-center mt-4 text-gray-600">
-        Already have an account?{" "}
-        <Link to="/login" className="text-yellow-400 hover:underline">Login</Link>
-      </p>
     </div>
   );
 };

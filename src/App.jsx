@@ -10,10 +10,13 @@ import { DoctorHome } from './DoctorHome.jsx'
 // import { DoctorForgotPassword } from './DoctorForgotPassword.jsx'
 import PatientLogin from './PatientLogin.jsx'
 import PatientSignup from './PatientSignup.jsx'
-import Home from './Home.jsx'
+
 // import {ForgotPassword} from './ForgotPassword.jsx'
 import NurseLogin from './NurseLogin.jsx'
 import NurseSignup from './NurseSignup.jsx'
+import { NurseHome } from './NurseHome.jsx'
+// import {PatientHome} from './Home.jsx'
+import { Home } from 'lucide-react'
 // import NurseForgotPassword from './NurseForgotPassword.jsx'
 function App() {
   
@@ -39,11 +42,12 @@ function App() {
             {/* Patient */}
             <Route path='/patientlogin' element={<PatientLogin/>}></Route>
             <Route path="/patientregister" element ={<PatientSignup/>}></Route>
-            <Route path="/home" element={<Home/>}></Route>
+            <Route path="/patienthome" element={<Home/>}></Route>
 
             {/* <Route path="/forgotpassword" element={<ForgotPassword/>}></Route> */}
             <Route path='/nurselogin' element={<NurseLogin/>}></Route>
             <Route path="/nurseregister" element ={<NurseSignup/>}></Route>
+            <Route path="/nursehome" element ={<NurseHome/>}></Route>
             {/* <Route path="/nurseforgotpassword" element={<NurseForgotPassword/>}></Route> */}
           </Routes>
         </Router>

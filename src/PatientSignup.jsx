@@ -3,8 +3,8 @@ import axios from "axios";
 import { useNavigate ,Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useFormik } from "formik";
-import { SignUpValidationSchema } from "./assets/PatientValidationSchema.jsx";
-
+import { SignUpValidationSchema } from "./schema/SignUpValidationSchema";
+import patientsignupimage from './images/patientsignup.jpg'
 
 const PatientSignup = () => {
   const navigate = useNavigate();
@@ -42,112 +42,112 @@ const PatientSignup = () => {
   });
 
   return (
-    <div className="max-w-md mx-auto p-8 bg-gradient-to-r from-pink-100 to-purple-100 shadow-xl rounded-lg font-amore">
-      <h2 className="text-3xl font-semibold text-center text-gray-800 mb-6">Sign Up</h2>
-
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label htmlFor="name" className="block text-sm font-medium text-gray-600">Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={values.name}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-          />
-          {touched.name && errors.name && <p className="text-red-500 text-xs">{errors.name}</p>}
+    <div className="flex min-h-screen justify-center items-center px-3 py-9 lg:px-8"
+        style={{
+            backgroundImage: `url(${patientsignupimage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+        }}>
+        <div className="border py-6 px-20 rounded-2xl drop-shadow-lg justify-center"
+            style={{
+                backgroundColor: "rgba(171, 167, 167, 0.8)",
+                backdropFilter: "blur(10px)",
+            }}>
+            <form onSubmit={handleSubmit} method="POST" className="flex flex-col">
+                <div className="pb-5 sm:max-auto sm:w-full sm:max-w-sm">
+                    <h2 className="font-bold font-sans text-slate-600 text-3xl pb-5 text-center">Create a new account</h2>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                    <div className="flex flex-col">
+                        <label>Full Name</label>
+                        <input 
+                            type="text"
+                            name="name"
+                            value={values.name}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            required
+                            className="w-full rounded-md mt-2 bg-slate-100 px-3 py-2.5 border-slate-400 text-gray-900 placeholder:text-gray-800 focus:outline-none"
+                        />
+                    </div>
+                    <div className="flex flex-col">
+                        <label>Email</label>
+                        <input 
+                            type="email"
+                            name="email"
+                            value={values.email}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            required
+                            className="w-full rounded-md mt-2 bg-slate-100 px-3 py-2.5 border-slate-400 text-gray-900 placeholder:text-gray-800 focus:outline-none"
+                        />
+                    </div>
+                    <div className="flex flex-col">
+                        <label>Mobile Number</label>
+                        <input 
+                            type="text"
+                            name="phone"
+                            value={values.phone}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            required
+                            className="w-full rounded-md mt-2 bg-slate-100 px-3 py-2.5 border-slate-400 text-gray-900 placeholder:text-gray-800 focus:outline-none"
+                        />
+                    </div>
+                    <div className="flex flex-col">
+                        <label>Age</label>
+                        <input 
+                            type="number"
+                            name="age"
+                            value={values.age}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            required
+                            className="w-full rounded-md mt-2 bg-slate-100 px-3 py-2.5 border-slate-400 text-gray-900 placeholder:text-gray-800 focus:outline-none"
+                        />
+                    </div>
+                </div>
+                <div className="flex flex-col mt-4">
+                    <label>Gender</label>
+                    <select 
+                        name="gender" 
+                        value={values.gender}  
+                        onChange={handleChange}   
+                        onBlur={handleBlur} 
+                        className="w-full rounded-md mt-2 bg-slate-100 px-3 py-3.5 border-slate-400 text-gray-900 focus:outline-none">
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div className="flex flex-col mt-4">
+                    <label>Password</label>
+                    <input 
+                        type="password"
+                        name="password"
+                        value={values.password}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        required 
+                        className="w-full rounded-md mt-2 bg-slate-100 px-3 py-2.5 border-slate-400 text-gray-900 placeholder:text-gray-800 focus:outline-none"
+                    />
+                </div>
+                <div className="flex justify-center">
+                    <button className="mt-6 bg-slate-500 px-28 text-white hover:bg-white hover:text-blue-900 py-2 rounded-3xl">
+                        Sign Up
+                    </button>
+                </div>
+            </form>
+            <p className="flex justify-center mt-4">
+                Already have an account? 
+                <Link to="/patientlogin" className="text-red-600 ms-1 tracking-tight hover:text-blue-800 hover:underline">
+                    Log In
+                </Link>
+            </p>
         </div>
-
-        <div className="mb-4">
-          <label htmlFor="email" className="block text-sm font-medium text-gray-600">Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={values.email}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-          />
-          {touched.email && errors.email && <p className="text-red-500 text-xs">{errors.email}</p>}
-        </div>
-
-        <div className="mb-6">
-          <label htmlFor="password" className="block text-sm font-medium text-gray-600">Password:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={values.password}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-          />
-          {touched.password && errors.password && <p className="text-red-500 text-xs">{errors.password}</p>}
-        </div>
-
-        <div className="mb-4">
-          <label htmlFor="phone" className="block text-sm font-medium text-gray-600">Phone:</label>
-          <input
-            type="text"
-            id="phone"
-            name="phone"
-            value={values.phone}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-          />
-          {touched.phone && errors.phone && <p className="text-red-500 text-xs">{errors.phone}</p>}
-        </div>
-
-        <div className="mb-4">
-          <label htmlFor="age" className="block text-sm font-medium text-gray-600">Age:</label>
-          <input
-            type="number"
-            id="age"
-            name="age"
-            value={values.age}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-          />
-          {touched.age && errors.age && <p className="text-red-500 text-xs">{errors.age}</p>}
-        </div>
-
-        <div className="mb-4">
-          <label htmlFor="gender" className="block text-sm font-medium text-gray-600">Gender:</label>
-          <select
-            id="gender"
-            name="gender"
-            value={values.gender}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-          >
-            <option value="">Select Gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
-          </select>
-          {touched.gender && errors.gender && <p className="text-red-500 text-xs">{errors.gender}</p>}
-        </div>
-
-        <button
-          type="submit"
-          className="w-full py-3 bg-pink-300 text-white font-semibold rounded-md hover:bg-pink-400 transition"
-        >
-          Signup
-        </button>
-      </form>
-
-      <p className="text-center mt-4 text-gray-600">
-        Already Have an account?{" "}
-        <Link to="/login" className="text-yellow-400 hover:underline">Login</Link>
-      </p>
     </div>
-  );
+);
 };
 
 export default PatientSignup;

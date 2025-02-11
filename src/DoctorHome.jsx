@@ -52,7 +52,7 @@ const DoctorHome  = () =>{
         console.log(patientsResponse.data.patients )
       }
       catch(error){
-        setError(error.response?.data?.message || 'An error occurred');
+        console.log(error)
       }
 
     }

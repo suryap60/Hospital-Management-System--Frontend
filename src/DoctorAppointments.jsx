@@ -1,22 +1,11 @@
 import axios from "axios"
-import { useEffect } from "react"
 
 const DoctorAppointments = ({appointments = [],setAppointments}) =>{
- 
-    // useEffect(()=>{
-    //     const token = localStorage.getItem('authToken')
-    //     console.log(token)
-
-    //     if (!token) {
-    //         console.error("No auth token found");
-    //         return;
-    //     }
-    // },[])
     
     const handleUpdateStatus = async(appointmentId,newStatus)=>{
         try{
             const token = localStorage.getItem('authToken')
-            console.log(token)
+            // console.log(token)
 
             if (!token) {
                 console.error("No auth token found");
@@ -24,12 +13,13 @@ const DoctorAppointments = ({appointments = [],setAppointments}) =>{
             }
             const udateAppointmentResponse = await axios.put(
                 `http://localhost:2000/api/updateAppointment/${appointmentId}`,
+                {status: newStatus},
                 {headers:{
-                    authorization:`${token}`
-                }},
-                {status: newStatus})
+                    authorization:token
+                }},)
+                
 
-                console.log(udateAppointmentResponse.data)
+                // console.log(udateAppointmentResponse.data)
 
             setAppointments((app)=>(
                 app.map((appointment) =>

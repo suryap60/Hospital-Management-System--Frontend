@@ -52,7 +52,7 @@ const DoctorAppointments = ({appointments = [],setAppointments}) =>{
                             </thead>
                             <tbody>
                                 {appointments?.map((appointment) => (
-                                <tr key={appointment._id} className="bg-white border-b  dark:border-cyan-700 border-gray-200 hover:bg-blue-50 ">
+                                <tr key={appointment._id || appointment.patientId.email} className="bg-white border-b  dark:border-cyan-700 border-gray-200 hover:bg-blue-50 ">
                                     {/* Assuming `d.id` is a unique identifier */}
                                     <td className="px-6 py-3">{appointment.patientId?.name}</td>
                                     <td className="px-6 py-3">{appointment.date}</td>
@@ -60,7 +60,12 @@ const DoctorAppointments = ({appointments = [],setAppointments}) =>{
                                     <td className="px-6 py-3">{appointment.reason}</td>
                                     <td className="px-6 py-3">
                                         <select 
-                                        className="bg-transparent"
+                                        className={`px-2 py-1 rounded-full text-sm ${
+                                            appointment.status === 'Pending' ? 'bg-blue-100 text-blue-800' :
+                                            appointment.status === 'Confirmed' ? 'bg-green-100 text-green-800' :
+                                            appointment.status === 'Cancelled' ? 'bg-red-100 text-red-800' :
+                                            'bg-gray-100 text-gray-800'
+                                        }`}
                                         value={appointment.status} 
                                         onChange={(e)=> handleUpdateStatus(appointment._id,e.target.value)}
                                         id="">

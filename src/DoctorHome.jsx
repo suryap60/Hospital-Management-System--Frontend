@@ -165,7 +165,7 @@ const DoctorHome  = () =>{
           { activePage == 'appointments' && 
           <DoctorAppointments appointments={appointments} setAppointments={setAppointments}/>}
 
-          { activePage == 'patients' && <ViewAllPatients patients={patients}/> }
+          { activePage == 'patients' && <ViewAllPatients patients={patients} setPatients={setPatients}/> }
 
 
         </div>

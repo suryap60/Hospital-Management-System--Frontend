@@ -1,10 +1,33 @@
+import axios from "axios";
 import { FilterIcon, SearchIcon } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
-const ViewAllPatients = ({patients =[]})=>{
+const ViewAllPatients = ({patients =[], setPatients})=>{
 
     // const [searchTerm, setSearchTerm] = useState('')
     const [appointmentFilter, setAppointmentFilter] = useState('All')
+
+    useEffect(() => {
+            const token = localStorage.getItem('authToken');
+
+            if(!token){
+            console.log("No Token Found")
+            return
+            }
+
+            fetchPatients(token);   
+    }, []); // Fetch once on component mount
+
+    const fetchPatients = async (token) => {
+        try {
+            const patientsResponse = await axios.get('http://localhost:2000/api/viewPatients',
+          { headers: { authorization: token } }
+        );
+        setPatients(patientsResponse.data.patients);
+        } catch (error) {
+            console.log("Error fetching patients:", error);
+        }
+    };
 
     const filteredPatients = appointmentFilter === 'All' 
         ? patients 
@@ -58,7 +81,7 @@ const ViewAllPatients = ({patients =[]})=>{
                     <tbody>
                         {filteredPatients && filteredPatients.length>0 ?(
                             filteredPatients?.map((patient)=>(
-                                <tr key={patient._id} className="border-b hover:bg-gray-50">
+                                <tr key={patient._id || patient.email} className="border-b hover:bg-gray-50">
                                     <td className="p-4">{patient.name}</td>
                                     <td className="p-4">{patient.age}</td>
                                     <td className="p-4">{patient.gender}</td>

@@ -5,19 +5,18 @@ const DoctorAppointments = ({appointments = [],setAppointments}) =>{
     const handleUpdateStatus = async(appointmentId,newStatus)=>{
         try{
             const token = localStorage.getItem('authToken')
-            // console.log(token)
 
             if (!token) {
                 console.error("No auth token found");
                 return;
             }
-            const udateAppointmentResponse = await axios.put(
+            await axios.put(
                 `http://localhost:2000/api/updateAppointment/${appointmentId}`,
                 {status: newStatus},
                 {headers:{
                     authorization:token
                 }},)
-                
+            
 
                 // console.log(udateAppointmentResponse.data)
 

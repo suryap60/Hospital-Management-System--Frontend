@@ -1,5 +1,3 @@
-
-
 const DoctorDashboard = ({stats}) => {
 
     return (
@@ -8,12 +6,14 @@ const DoctorDashboard = ({stats}) => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
                 
                 { stats?.map((stat, index)=>(
-                <div key={index} className="bg-white h-36 md:h-40 lg:h-48 w-full p-4 md:p-5  lg:p-6 rounded-lg shadow flex items-end">
-                    <div className="flex flex-col items-center justify-between">
-                        <div>
-                            <p className="text-2xl  font-semibold">{stat.value}</p>
-                            <p className="text-sm text-gray-900">{stat.title}</p>
+                <div key={index} className="bg-white h-36 md:h-40 lg:h-48 w-full p-4 md:p-5  lg:p-6 rounded-lg shadow flex ">
+                    <div className="flex flex-col justify-between ">
+                        <div className="flex ">
+                            <p className="text-7xl font-semibold">{stat.value}</p>
+                            <stat.icon className=' h-14 w-12 ms-10 mt-3 font-semibold'/>
                         </div>
+                            <p className="text-xl text-gray-900">{stat.title}</p>
+                        
                     </div>
                 </div>
             ))}

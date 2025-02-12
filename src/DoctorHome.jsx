@@ -1,8 +1,10 @@
 import axios from "axios";
-import { Activity, X, Menu, UserCircle ,LogOut, Calendar, User } from "lucide-react";
+import { Activity, X, Menu, UserCircle ,LogOut, Calendar, Users } from "lucide-react";
 import { useEffect, useState } from "react"
 import { DoctorDashboard } from "./DoctorDashboard";
 import { DoctorAppointments } from "./DoctorAppointments";
+import { ViewAllPatients } from "./DoctorViewPatients";
+
 
 const DoctorHome  = () =>{
 
@@ -17,7 +19,7 @@ const DoctorHome  = () =>{
   const navigation = [
     { name: 'Dashboard', icon:Activity , id:'dashboard'},
     { name: 'Appointments', icon:Calendar , id:'appointments'},
-    { name: 'Patients', icon:User , id:'patients'},
+    { name: 'Patients', icon:Users , id:'patients'},
   ]
   
 
@@ -48,8 +50,9 @@ const DoctorHome  = () =>{
         const patientsResponse = await axios.get('http://localhost:2000/api/viewPatients',
           { headers: { authorization: token } }
         );
-        setPatients(patientsResponse.data.patients )
-        console.log(patientsResponse.data.patients )
+        setPatients(patientsResponse.data.patients);
+        console.log(patientsResponse.data.patients)
+        
       }
       catch(error){
         console.log(error)
@@ -63,7 +66,7 @@ const DoctorHome  = () =>{
   // Update stats when patients or appointments change
   useEffect(() => {
     setStats([
-      { title: "Total Patients", value: patients.length, icon: User },
+      { title: "Total Patients", value: patients.length, icon: Users },
       { title: "Total Appointments", value: appointments.length, icon: Calendar },
     ]);
   }, [patients, appointments]);
@@ -81,8 +84,10 @@ const DoctorHome  = () =>{
     
       {/* sidebar */}
       <div className={`h-screen w-64 lg:w-1/3 md:w-56  bg-white shadow fixed top-0 left-0  overflow-y-auto
-         ${isMenuOpen? 'translate-x-0 ' : '-translate-x-full'} lg:translate-x-0 lg:static transform transition-transform duration-200`}>
+         ${isMenuOpen? 'translate-x-0 ' : '-translate-x-full'} lg:translate-x-0 lg:static  transition-transform duration-200`}>
           <div className="h-24 flex items-center gap-4 ms-4 border-b">
+
+            {/* doctor profile */}
               {doctorProfile?.profilePicture?(
                 <img src={doctorProfile.profilePicture} 
                 alt="Doctor Profile"
@@ -128,7 +133,8 @@ const DoctorHome  = () =>{
 
       </div>
 
-      <div className="flex-1 p-4 w-full lg:ml-64">
+      {/* main content */}
+      <div className="flex-initial w-full">
           {/* Menu Button */}
         <button
           className="fixed top-4 right-4 z-50 p-2 lg:hidden"
@@ -136,29 +142,33 @@ const DoctorHome  = () =>{
         >
           {isMenuOpen ? <X className="h-6 w-6 text-gray-700" /> : <Menu className="h-6 w-6 text-gray-700" />}
         </button>
-      </div>
+      
 
-      {/* rendering -dashboard status */}
-      <div className="w-full lg:4/5 mx-auto px-4 md:px-6 lg:px-8">
+        {/* rendering -dashboard status */}
+        <div className="w-full mx-auto px-4 md:px-6 ">
 
-      { activePage == "dashboard" && 
-        (
-          <>
-          {/* Welcome Section - Only for Dashboard */}
-          <div className="text-left mb-6 mt-20 ps-6">
-            <h1 className="text-xl  font-bold text-gray-800">Welcome!</h1>
-            <h1 className="text-3xl pt-1 font-bold text-gray-600">Dr. {doctorProfile?.fullName}</h1>
-            {/* <p className="py-2">Easily manage your schedule, consult with patients, and stay on top of your <br /> appointments with our seamless platform.</p> */}
-          </div>
-    
-          {/* Dashboard Content */}
-          <DoctorDashboard stats={stats} />
-        </>
-      )}
+          { activePage == "dashboard" && 
+            (
+              <>
+              {/* Welcome Section - Only for Dashboard */}
+              <div className="text-left mb-6 pt-20 ps-8">
+                <h1 className="text-xl  font-bold text-gray-800">Welcome!</h1>
+                <h1 className="text-3xl pt-1 font-bold text-gray-600">Dr. {doctorProfile?.fullName}</h1>
+                {/* <p className="py-2">Easily manage your schedule, consult with patients, and stay on top of your <br /> appointments with our seamless platform.</p> */}
+              </div>
+        
+              {/* Dashboard Content */}
+              <DoctorDashboard stats={stats} />
+            </>
+          )}
 
-      { activePage == 'appointments' && 
-      <DoctorAppointments appointments={appointments} setAppointments={setAppointments}/>}
+          { activePage == 'appointments' && 
+          <DoctorAppointments appointments={appointments} setAppointments={setAppointments}/>}
 
+          { activePage == 'patients' && <ViewAllPatients patients={patients}/> }
+
+
+        </div>
       </div>
        
        

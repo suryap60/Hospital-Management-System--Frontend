@@ -8,26 +8,26 @@ const ViewAllPatients = ({patients =[], setPatients})=>{
     const [appointmentFilter, setAppointmentFilter] = useState('All')
 
     useEffect(() => {
-            const token = localStorage.getItem('authToken');
+            const fetchPatients = async () => {
+                const token = localStorage.getItem('authToken');
 
-            if(!token){
-            console.log("No Token Found")
-            return
-            }
+                if(!token){
+                console.log("No Token Found")
+                return
+                }
+                try {
+                    const patientsResponse = await axios.get('http://localhost:2000/api/viewPatients',
+                  { headers: { authorization: token } }
+                );
+                setPatients(patientsResponse.data.patients);
+                } catch (error) {
+                    console.log("Error fetching patients:", error);
+                }
+            };   
+            fetchPatients()
+    }, []);
 
-            fetchPatients(token);   
-    }, []); // Fetch once on component mount
-
-    const fetchPatients = async (token) => {
-        try {
-            const patientsResponse = await axios.get('http://localhost:2000/api/viewPatients',
-          { headers: { authorization: token } }
-        );
-        setPatients(patientsResponse.data.patients);
-        } catch (error) {
-            console.log("Error fetching patients:", error);
-        }
-    };
+    
 
     const filteredPatients = appointmentFilter === 'All' 
         ? patients 
@@ -64,7 +64,7 @@ const ViewAllPatients = ({patients =[], setPatients})=>{
                  </div>
             </div>
             <div>
-                <table className="w-full mt-16">
+                <table className="w-full mt-16 ">
                     <thead className="text-gray-700 uppercase">
                         <tr className="border-b">
                             <th className="text-left p-4">Name</th>

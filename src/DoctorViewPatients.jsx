@@ -37,9 +37,11 @@ const ViewAllPatients = ({patients =[], setPatients})=>{
     return (
         <div>
             <div className="flex  justify-between max-w-screen-lg mx-auto  pt-7">
-                <div className="flex flex-col">
+                <div className="flex flex-col max-w-[250px] sm:max-w-[300px] md:max-w-[350px] lg:max-w-[400px] w-full">
                     <h1 className="text-3xl font-semibold">Patient List</h1>
-                    <form className="relative w-64" onSubmit={handleSearchSubmit}>
+                    <form 
+                    className="relative w-64" 
+                    onSubmit={handleSearchSubmit}>
                         <SearchIcon className="absolute left-2 top-2.5 h-5 w-5 text-gray-500"/>
                         <input 
                         type="text"

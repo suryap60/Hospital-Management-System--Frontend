@@ -80,7 +80,7 @@ const DoctorHome  = () =>{
     <div className="h-screen overflow-y-auto flex">
     
       {/* sidebar */}
-      <div className={`h-screen w-64 lg:w-1/3 md:w-56  bg-white shadow fixed top-0 left-0  overflow-y-auto
+      <div className={`h-screen w-64 lg:w-1/3 md:w-56  bg-white shadow fixed top-0 left-0  overflow-y-auto 
          ${isMenuOpen? 'translate-x-0 ' : '-translate-x-full'} lg:translate-x-0 lg:static  transition-transform duration-200`}>
           <div className="h-24 flex items-center gap-4 ms-4 border-b">
 

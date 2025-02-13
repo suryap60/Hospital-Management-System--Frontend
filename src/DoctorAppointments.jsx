@@ -1,10 +1,11 @@
 import axios from "axios"
+import dayjs from "dayjs"
 import { Calendar } from "lucide-react"
 import { useState } from "react"
 
 const DoctorAppointments = ({appointments = [],setAppointments}) =>{
-    const [appointmentFilter, setAppointmentFilter] = useState('All')
-    
+    const [appointmentFilter, setAppointmentFilter] = useState('All')    
+    const [dateFilter, setDateFilter] = useState('All')
     
     const handleUpdateStatus = async(appointmentId,newStatus)=>{
         try{
@@ -33,9 +34,26 @@ const DoctorAppointments = ({appointments = [],setAppointments}) =>{
         }
     }
 
-    const filteredAppointment = appointments.filter((appointment)=>
-        appointmentFilter === 'All' || appointment.status === appointmentFilter
-    )
+     // Date-based filtering function
+    const filterByDate = (appointment) => {
+        const today = dayjs()
+        const appointmentDate = dayjs(appointment.date)
+
+        if (dateFilter == "Today"){
+            return appointmentDate.isSame(today,'day');
+        }else if (dateFilter === "This Week"){
+            return appointmentDate.isSame(today,'week')
+        }else if (dateFilter === "This Month"){
+            return appointmentDate.isSame(today,"month")
+        }
+        return true; // If "All" is selected, show all appointments
+    }
+
+    const filteredAppointment = appointments
+    .filter((appointment)=>
+        appointmentFilter === 'All' || appointment.status === appointmentFilter)
+    .filter(filterByDate); // Apply date filter
+
 
     return(
         <div className="max-w-screen-lg mx-auto px-4 mt-10 mt-20">
@@ -43,20 +61,40 @@ const DoctorAppointments = ({appointments = [],setAppointments}) =>{
                 <h1 className="ps-6 font-semibold text-xl md:text-xl">
                     Upcoming Appointments
                 </h1>
-                <div className="flex">
-                    <Calendar className="h-10 w-8"/>
-                    <select 
-                        className="border rounded-md px-2 py-2" 
-                        value={appointmentFilter}
-                        onChange={(e)=>setAppointmentFilter(e.target.value)}
-                    >
-                        <option value="All">All Status</option>
-                        <option value="Pending">Pending</option>
-                        <option value="Confirmed">Confirmed</option>
-                        <option value="Cancelled">Cancelled</option>
-                    </select>
+                <div className="flex gap-4">
+                    
+                    <div className="flex">
+                        <Calendar className="h-10 w-8 me-2"/>
+                        <select 
+                            className="border rounded-md px-2 py-2"
+                            value={dateFilter}
+                            onChange={(e)=>setDateFilter(e.target.value)}
+                        >
+                            <option value="All">All Dates</option>
+                            <option value="Today">Today</option>
+                            <option value="This Week">This Week</option>
+                            <option value="This Month">This Month</option>
+                        </select>
+                    </div>
+
+
+                    <div className="flex">
+                        <Calendar className="h-10 w-8 me-2"/>
+                        <select 
+                            className="border rounded-md px-2 py-2" 
+                            value={appointmentFilter}
+                            onChange={(e)=>setAppointmentFilter(e.target.value)}
+                        >
+                            <option value="All">All Status</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Confirmed">Confirmed</option>
+                            <option value="Cancelled">Cancelled</option>
+                        </select>
+                    </div>
+
                 </div>
             </div>
+
             <div className="mt-4">
                 {filteredAppointment.length >0 ? (
                     <div className="shadow-md sm:rounded-lg">

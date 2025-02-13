@@ -37,21 +37,18 @@ const DoctorHome  = () =>{
           { headers: { authorization: token } }
         );
         setDoctorProfile(profileResponse.data.doctor)
-        console.log(profileResponse.data.doctor)
 
         //fetch patients
         const appointmentsResponse = await axios.get('http://localhost:2000/api/viewPatientAppointment',
           { headers: { authorization: token } }
         );
         setAppointments(appointmentsResponse.data.appointment)
-        console.log(appointmentsResponse.data.appointment)
 
         //fetch patients
         const patientsResponse = await axios.get('http://localhost:2000/api/viewPatients',
           { headers: { authorization: token } }
         );
         setPatients(patientsResponse.data.patients);
-        console.log(patientsResponse.data.patients)
         
       }
       catch(error){

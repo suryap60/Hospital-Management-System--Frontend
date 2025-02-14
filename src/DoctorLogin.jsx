@@ -95,13 +95,12 @@ const LoginDoctor = ()=>{
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                     }} 
-                        >
-                              <div className="hidden md:block">
-
-                                <img 
-                                className="h-1/2 rounded-l-2xl"
-                                src={DoctorImage} alt="doctor" width='464' />
-                            </div>
+                    >
+                        <div className="hidden md:block">
+                            <img 
+                            className="h-1/2 rounded-l-2xl"
+                            src={DoctorImage} alt="doctor" width='464' />
+                        </div>
         
                         
                         <div 

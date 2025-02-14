@@ -38,7 +38,7 @@ const DoctorAppointments = ({appointments = [],setAppointments}) =>{
     const filterByDate = (appointment) => {
         const today = dayjs()
         const appointmentDate = dayjs(appointment.date)
-
+        
         if (dateFilter == "Today"){
             return appointmentDate.isSame(today,'day');
         }else if (dateFilter === "This Week"){
@@ -57,11 +57,11 @@ const DoctorAppointments = ({appointments = [],setAppointments}) =>{
 
     return(
         <div className="max-w-screen-lg mx-auto px-4 mt-10 mt-20">
-            <div className="flex justify-between">
-                <h1 className="ps-6 font-semibold text-xl md:text-xl">
+            <div className="flex justify-between flex-col">
+                <h1 className="font-semibold text-xl md:text-xl">
                     Upcoming Appointments
                 </h1>
-                <div className="flex gap-4">
+                <div className="flex gap-4 mt-5">
                     
                     <div className="flex">
                         <Calendar className="h-10 w-8 me-2"/>
@@ -141,7 +141,7 @@ const DoctorAppointments = ({appointments = [],setAppointments}) =>{
                         </table>
                     </div>
                 ):( 
-                <p>No Appointments Available</p>
+                <p colSpan="9" className="text-center p-4">No Appointments Available</p>
                  )}
             </div>
 

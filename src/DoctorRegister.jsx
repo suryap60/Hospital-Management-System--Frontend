@@ -3,7 +3,6 @@ import { useFormik } from "formik"
 import { Link, useNavigate } from "react-router-dom"
 import { DoctorRegisterValidationSchema } from "./assets/ValidationSchemaDoctorRegister"
 import Swal from "sweetalert2"
-import signupImage from './images/login.jpg'
 import backgroundImage from './images/bg.jpg'
 
 const RegisterDoctor = () => {
@@ -15,6 +14,7 @@ const RegisterDoctor = () => {
         email: "",
         phone: "",
         specialty: "",
+        experiance:"",
         password: ""
     }
 
@@ -81,7 +81,7 @@ const RegisterDoctor = () => {
             <div 
             className="border  py-6 px-20 rounded-2xl drop-shadow-lg justify-center"
             style={{
-                backgroundColor: "rgba(255, 255, 255, 0.8)", // Transparent white background for the form
+                backgroundColor: "rgba(255, 255, 255, 0.5)", // Transparent white background for the form
                 backdropFilter: "blur(10px)", // Blur effect on the background
             }}
             >
@@ -104,7 +104,7 @@ const RegisterDoctor = () => {
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 required
-                                className="block w-full rounded-md mt-2  bg-slate-100 px-3 py-2.5 focus:outline-slate-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm/6"
+                                className="block w-full rounded-md mt-2  bg-slate-200 px-3 py-2.5 focus:outline-slate-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm/6"
                                 />
                                 {touched.fullName && errors.fullName ? (
                                     <p className="text-red-500 text-sm mt-1">{errors.fullName}</p>
@@ -122,7 +122,7 @@ const RegisterDoctor = () => {
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 required
-                                className="block w-full rounded-md mt-2  bg-slate-100 px-3 py-2.5 focus:outline-slate-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm/6"
+                                className="block w-full rounded-md mt-2  bg-slate-200 px-3 py-2.5 focus:outline-slate-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm/6"
                                 />
                                 {touched.email && errors.email ? (
                                     <p className="text-red-500 text-sm mt-1">{errors.email}</p>
@@ -130,7 +130,7 @@ const RegisterDoctor = () => {
                             </div>
 
                             <div className="flex flex-col">
-                                <label >Mobile Number</label>
+                                <label >Phone</label>
                                 <input 
                                 type="string"
                                 autoComplete="off"
@@ -140,7 +140,7 @@ const RegisterDoctor = () => {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     required
-                                    className="block w-full rounded-md mt-2  bg-slate-100 px-3 py-2.5 focus:outline-slate-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm/6"
+                                    className="block w-full rounded-md mt-2  bg-slate-200 px-3 py-2.5 focus:outline-slate-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm/6"
                                 />
                                 {touched.phone && errors.phone ? (
                                     <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
@@ -148,24 +148,50 @@ const RegisterDoctor = () => {
                             </div>
                         </div>
 
-                        <div className="flex flex-col">
-                            <label className="mt-5">Specialty</label>
-                            <select 
-                            name="specialty" 
-                            value={values.specialty}  
-                            onChange={handleChange}   
-                            onBlur={handleBlur} 
-                            className="mt-2 block w-full rounded-md bg-slate-100 px-3 py-3.5 focus:outline-slate-400 focus:outline text-base  border-slate-400 text-gray-900 focus:outline focus:outline-none sm:text-sm/6">
-                                <option value="">Select Your Specialty</option>
-                                <option value="Cardiology">Cardiology</option>
-                                <option value="Dermatology">Dermatology</option>
-                                <option value="Neurology">Neurology</option>
-                                <option value="Pediatrics">Pediatrics</option>
-                                <option value="Orthopedics">Orthopedics</option>
-                            </select>
-                            {touched.specialty && errors.specialty ? (
-                                <p className="text-red-500 text-sm mt-1">{errors.specialty}</p>
-                            ) : null}
+                        <div className="flex flex-row gap-3">
+                            <div className="flex flex-col w-1/2">
+                                <label className="mt-5">Specialty</label>
+                                <select 
+                                name="specialty" 
+                                value={values.specialty}  
+                                onChange={handleChange}   
+                                onBlur={handleBlur} 
+                                className="block w-full rounded-md mt-2  bg-slate-200 px-3 py-2.5 focus:outline-slate-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm">
+                                    <option value="">Select Your Specialty</option>
+                                    <option value="Cardiology">Cardiology</option>
+                                    <option value="Dermatology">Dermatology</option>
+                                    <option value="Neurology">Neurology</option>
+                                    <option value="Pediatrics">Pediatrics</option>
+                                    <option value="Orthopedics">Orthopedics</option>
+                                </select>
+                                {touched.specialty && errors.specialty ? (
+                                    <p className="text-red-500 text-sm mt-1">{errors.specialty}</p>
+                                ) : null}
+                            </div>
+                            <div className="flex flex-col w-1/2">
+                                <label className="mt-5">Experiance</label>
+                                <select 
+                                name="experiance" 
+                                value={values.experiance}  
+                                onChange={handleChange}   
+                                onBlur={handleBlur} 
+                                className="block w-full rounded-md mt-2  bg-slate-200 px-3 py-2.5 focus:outline-slate-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm/6">
+                                    <option value=""></option>
+                                    <option value="1">1 Year</option>
+                                    <option value="2">2 Year</option>
+                                    <option value="3">3 Year</option>
+                                    <option value="4">4 Year</option>
+                                    <option value="5">5 Year</option>
+                                    <option value="6">6 Year</option>
+                                    <option value="7">7 Year</option>
+                                    <option value="8">8 Year</option>
+                                    <option value="9">9 Year</option>
+                                    <option value="10">10+ Year</option>
+                                </select>
+                                {touched.experiance && errors.experiance ? (
+                                    <p className="text-red-500 text-sm mt-1">{errors.experiance}</p>
+                                ) : null}
+                            </div>
                         </div>
 
                         <div className="flex flex-col">
@@ -179,7 +205,7 @@ const RegisterDoctor = () => {
                             onChange={handleChange}
                             onBlur={handleBlur}
                             required 
-                            className="block w-full rounded-md mt-2  bg-slate-100 px-3 py-2.5 focus:slate-pink-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm/6"
+                            className="block w-full rounded-md mt-2  bg-slate-200 px-3 py-2.5 focus:slate-pink-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm/6"
                             />
                             {touched.password && errors.password ? (
                                 <p className="text-red-500 text-sm mt-1">
@@ -200,12 +226,12 @@ const RegisterDoctor = () => {
                     </div>
                 </form>
                 <p 
-                className="flex justify-end px-40"
+                className="flex justify-center"
                 >
-                    Already have an account ?
+                    Already have an account?
                     <Link
                         to="/loginDoctor"
-                        className="text-red-600 ms-1 tracking-tight hover:text-blue-800 hover:underline"
+                        className="text-red-500 ms-1 tracking-tight hover:text-blue-800 hover:underline"
                     >
 
                         sign In now

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { DoctorDashboard } from "./DoctorDashboard";
 import { DoctorAppointments } from "./DoctorAppointments";
 import { ViewAllPatients } from "./DoctorViewPatients";
+import { DoctorProfile } from "./DoctorProfile";
 
 
 const DoctorHome  = () =>{
@@ -37,6 +38,7 @@ const DoctorHome  = () =>{
           { headers: { authorization: token } }
         );
         setDoctorProfile(profileResponse.data.doctor)
+        console.log(profileResponse.data.doctor)
 
         //fetch patients
         const appointmentsResponse = await axios.get('http://localhost:2000/api/viewPatientAppointment',
@@ -82,9 +84,12 @@ const DoctorHome  = () =>{
       {/* sidebar */}
       <div className={`h-screen w-64 lg:w-1/3 md:w-56  bg-white shadow fixed top-0 left-0  overflow-y-auto 
          ${isMenuOpen? 'translate-x-0 ' : '-translate-x-full'} lg:translate-x-0 lg:static  transition-transform duration-200`}>
-          <div className="h-24 flex items-center gap-4 ms-4 border-b">
 
-            {/* doctor profile */}
+          {/* doctor profile */}
+          <div 
+            className="h-24 flex cursor-pointer items-center gap-4 ms-4 border-b"
+            onClick={()=>setActivePage("profile")}
+          >
               {doctorProfile?.profilePicture?(
                 <img src={doctorProfile.profilePicture} 
                 alt="Doctor Profile"
@@ -114,7 +119,7 @@ const DoctorHome  = () =>{
                  className={`w-full flex items-center space-x-2 px-4 py-2 rounded-md mb-2
                   ${activePage == item.id? "bg-blue-50" : "text-gray-600 hover:bg-blue-50"} `}
                 >
-                  {/* <item.icon className="h-5 w-5"/> */}
+                  <item.icon className="h-5 w-5"/>
                   <span>{item.name}</span>
                 </button>
               ))}
@@ -161,8 +166,8 @@ const DoctorHome  = () =>{
 
           { activePage == 'appointments' && 
           <DoctorAppointments appointments={appointments} setAppointments={setAppointments}/>}
-
           { activePage == 'patients' && <ViewAllPatients patients={patients} setPatients={setPatients}/> }
+          { activePage == 'profile' && <DoctorProfile doctorProfile={doctorProfile} setDoctorProfile={setDoctorProfile}/>}
 
 
         </div>

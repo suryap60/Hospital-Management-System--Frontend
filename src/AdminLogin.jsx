@@ -85,7 +85,7 @@ const AdminLogin = ()=>{
                     <AdminHome/>
                 ):( 
                     <div
-                    className="flex min-h-screen flex-col justify-center items-center px-6 py-12 lg:px-8 "
+                    className="flex min-h-screen flex-col justify-center items-center sm:px-6 py-12 lg:px-8"
                     style={{
                             backgroundImage: `url(${backgroundImageLogin})`,  // Correct path for the public folder
                             backgroundSize: 'cover',
@@ -93,7 +93,7 @@ const AdminLogin = ()=>{
                         }} 
                     >
                         <div 
-                        className="border py-10 px-20 w-1/3 bg-white rounded-2xl drop-shadow-lg"
+                        className="border py-10 px-20 w-full max-w-md sm:max-w-lg lg:w-1/3 bg-white p-6 sm:p-10 rounded-2xl drop-shadow-lg"
                         style={{
                             backgroundColor: "rgba(255, 255, 255, 0.7)", // Transparent white background for the form
                             backdropFilter: "blur(10px)", // Blur effect on the background
@@ -101,7 +101,7 @@ const AdminLogin = ()=>{
                         }}
                         >
                             <div  className="pb-7 sm:max-auto sm:w-full sm:max-w-sm ">
-                                <h2 className="font-bold font-sans ms-16 text-3xl pb-5">Login</h2>
+                                <h2 className="text-2xl sm:text-3xl font-bold text-center sm:text-left mb-6">Login</h2>
                             </div>
                             <div>
                                 <form 

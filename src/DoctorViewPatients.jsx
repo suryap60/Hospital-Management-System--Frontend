@@ -87,9 +87,9 @@ const ViewAllPatients = ({patients =[], setPatients})=>{
                                 </tr>
                             ))
                         ):(
-                            <tr>
-                                <td colSpan="9" className="text-center p-4">No patients found</td>
-                            </tr>
+                            <p colSpan="9" className="text-center p-4">
+                                No patients found
+                            </p>
                         )
                         }
                         

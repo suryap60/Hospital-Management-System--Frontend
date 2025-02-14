@@ -157,7 +157,7 @@ const AdminSignUp = ()=>{
                         </div>
                     </form>
                     <p className="flex justify-center">
-                    Already have an account ?
+                    Already have an account?
                     <Link
                         to="/login"
                         className="text-red-500 ms-1 tracking-tight hover:text-blue-800 hover:underline"

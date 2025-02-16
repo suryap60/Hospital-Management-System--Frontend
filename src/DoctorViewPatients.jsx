@@ -36,7 +36,7 @@ const ViewAllPatients = ({patients =[], setPatients})=>{
 
     return (
         <div>
-            <div className="flex  justify-between max-w-screen-lg mx-auto  pt-7">
+            <div className="flex max-w-screen-lg mx-auto  pt-7">
                 <div className="flex flex-col max-w-[250px] sm:max-w-[300px] md:max-w-[350px] lg:max-w-[400px] w-full">
                     <h1 className="text-3xl font-semibold">Patient List</h1>
                     <form 
@@ -56,34 +56,34 @@ const ViewAllPatients = ({patients =[], setPatients})=>{
                  {/* filter div */}
             </div>
 
-            <div>
-                <table className="w-full mt-16">
-                    <thead className="text-gray-700 uppercase">
+            <div className="lg:px-20">
+                <table className="w-full text-sm text-left mt-10">
+                    <thead className="text-gray-100 uppercase bg-blue-800">
                         <tr className="border-b">
-                            <th className="text-left p-4">SI.No</th>
-                            <th className="text-left p-4">Name</th>
-                            <th className="text-left p-4">Age</th>
-                            <th className="text-left p-4">Gender</th>
-                            <th className="text-left p-4">Contact</th>
-                            <th className="text-left p-4">Medical History</th>
-                            <th className="text-left p-4">Feedback</th>
-                            <th className="text-left p-4">Payment</th>
-                            <th className="text-left p-4">Chat</th>
+                            <th className="px-6 py-3">SI.No</th>
+                            <th className="px-6 py-3">Name</th>
+                            <th className="px-6 py-3">Age</th>
+                            <th className="px-6 py-3">Gender</th>
+                            <th className="px-6 py-3">Contact</th>
+                            <th className="px-6 py-3">Medical History</th>
+                            <th className="px-6 py-3">Feedback</th>
+                            <th className="px-6 py-3">Payment</th>
+                            <th className="px-6 py-3">Chat</th>
                         </tr>
                     </thead>
                     <tbody>
                         {searchPatient.length>0 ?(
                             searchPatient?.map((patient,index)=>(
                                 <tr key={patient._id} className="border-b hover:bg-gray-50">
-                                    <td className="p-4">{index + 1}</td>
-                                    <td className="p-4">{patient.name}</td>
-                                    <td className="p-4">{patient.age}</td>
-                                    <td className="p-4">{patient.gender}</td>
-                                    <td className="p-4">{patient.phone}</td>
-                                    <td className="p-4">{patient.medicalHistory}</td>
-                                    <td className="p-4">{patient.feedbackreview}</td>
-                                    <td className="p-4">{patient.payment}</td>
-                                    <td className="p-4">{patient.chat}</td>
+                                    <td className="px-6 py-3">{index + 1}</td>
+                                    <td className="px-6 py-3">{patient.name}</td>
+                                    <td className="px-6 py-3">{patient.age}</td>
+                                    <td className="px-6 py-3">{patient.gender}</td>
+                                    <td className="px-6 py-3">{patient.phone}</td>
+                                    <td className="px-6 py-3">{patient.medicalHistory}</td>
+                                    <td className="px-6 py-3">{patient.feedbackreview}</td>
+                                    <td className="px-6 py-3">{patient.payment}</td>
+                                    <td className="px-6 py-3">{patient.chat}</td>
                                 </tr>
                             ))
                         ):(

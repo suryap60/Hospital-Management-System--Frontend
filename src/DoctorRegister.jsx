@@ -178,15 +178,15 @@ const RegisterDoctor = () => {
                                 className="block w-full rounded-md mt-2  bg-slate-200 px-3 py-2.5 focus:outline-slate-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm/6">
                                     <option value=""></option>
                                     <option value="1">1 Year</option>
-                                    <option value="2">2 Year</option>
-                                    <option value="3">3 Year</option>
-                                    <option value="4">4 Year</option>
-                                    <option value="5">5 Year</option>
-                                    <option value="6">6 Year</option>
-                                    <option value="7">7 Year</option>
-                                    <option value="8">8 Year</option>
+                                    <option value="2">2 Years</option>
+                                    <option value="3">3 Years</option>
+                                    <option value="4">4 Years</option>
+                                    <option value="5">5 Years</option>
+                                    <option value="6">6 Years</option>
+                                    <option value="7">7 Years</option>
+                                    <option value="8">8 Years</option>
                                     <option value="9">9 Year</option>
-                                    <option value="10">10+ Year</option>
+                                    <option value="10">10+ Years</option>
                                 </select>
                                 {touched.experiance && errors.experiance ? (
                                     <p className="text-red-500 text-sm mt-1">{errors.experiance}</p>

@@ -1,6 +1,6 @@
 import axios from "axios"
 import dayjs from "dayjs"
-import { Calendar } from "lucide-react"
+import { CalendarDays } from "lucide-react"
 import { useState } from "react"
 
 const DoctorAppointments = ({appointments = [],setAppointments}) =>{
@@ -56,17 +56,18 @@ const DoctorAppointments = ({appointments = [],setAppointments}) =>{
 
 
     return(
-        <div className="max-w-screen-lg mx-auto px-4 mt-10 mt-20">
+        <div className="max-w-screen-lg mx-auto px-4 mt-8 ">
             <div className="flex justify-between flex-col">
-                <h1 className="font-semibold text-xl md:text-xl">
+                <h1 className="font-semibold text-3xl md:text-3xl">
                     Upcoming Appointments
                 </h1>
-                <div className="flex gap-4 mt-5">
+                <p className="py-1">Manage and track your scheduled appointments</p>
+                <div className="flex gap-4 mt-10">
                     
                     <div className="flex">
-                        <Calendar className="h-10 w-8 me-2"/>
+                        <CalendarDays className="h-10 w-8 me-2 text-blue-900"/>
                         <select 
-                            className="border rounded-md px-2 py-2"
+                            className="bg-blue-500 text-white rounded-md px-2 py-2"
                             value={dateFilter}
                             onChange={(e)=>setDateFilter(e.target.value)}
                         >
@@ -79,9 +80,8 @@ const DoctorAppointments = ({appointments = [],setAppointments}) =>{
 
 
                     <div className="flex">
-                        <Calendar className="h-10 w-8 me-2"/>
                         <select 
-                            className="border rounded-md px-2 py-2" 
+                            className="bg-blue-500 text-white rounded-md px-2 py-2" 
                             value={appointmentFilter}
                             onChange={(e)=>setAppointmentFilter(e.target.value)}
                         >
@@ -99,7 +99,7 @@ const DoctorAppointments = ({appointments = [],setAppointments}) =>{
                 {filteredAppointment.length >0 ? (
                     <div className="shadow-md sm:rounded-lg">
                         <table className="w-full text-sm text-left ">
-                            <thead className=" uppercase border-b">
+                            <thead className="uppercase bg-blue-800 text-white">
                             <tr>
                                 <th className="px-6 py-3">SI.No</th>
                                 <th className="px-6 py-3">Name</th>

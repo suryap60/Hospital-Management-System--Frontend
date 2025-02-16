@@ -4,11 +4,14 @@ import { ValidationSchema } from "./assets/ValidationSchema";
 import axios from "axios";
 import Swal from 'sweetalert2'
 import backgroundImage from './images/signup.jpeg'
-import {Users} from  'lucide-react'
+import { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 
 const AdminSignUp = ()=>{
 
     const navigation = useNavigate()
+    const [showPassword, setShowPassword] = useState(false)
+    
     
 
     const initialValues = {
@@ -128,22 +131,31 @@ const AdminSignUp = ()=>{
                             </div>
                             <div className="flex flex-col">
                                 <label className="mt-5">Password</label>
-                                <input 
-                                type="password"
-                                autoComplete="off"
-                                autoSave="off"
-                                name="password"
-                                value={values.password}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                required
-                                className="block w-full rounded-md mt-2 bg-gray-100 px-3 py-2.5 focus:outline-blue-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-400 focus:outline focus:outline-none sm:text-sm/6"
-                            />
-                            {touched.password && errors.password ? (
-                                <p className="text-red-500 text-sm mt-1">
-                                {errors.password}
-                                </p>
-                            ) : null}
+                                <div className="relative h-12">
+                                    <input 
+                                    type={showPassword? 'text' : 'password'}
+                                    autoComplete="off"
+                                    autoSave="off"
+                                    name="password"
+                                    value={values.password}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    required
+                                    className="block w-full rounded-md mt-2 bg-gray-100 px-3 py-2.5 focus:outline-blue-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-400 focus:outline focus:outline-none sm:text-sm/6"
+                                />
+                                    {touched.password && errors.password ? (
+                                        <p className="text-red-500 text-sm mt-1">
+                                        {errors.password}
+                                        </p>
+                                    ) : null}
+                                    <button 
+                                        type="button" 
+                                        onClick={() => setShowPassword(!showPassword)}
+                                        className="absolute right-3 top-1/4 pt-2 text-black"
+                                    >
+                                        {showPassword ? <EyeOff/> : <Eye/>}
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <div className="flex justify-center">

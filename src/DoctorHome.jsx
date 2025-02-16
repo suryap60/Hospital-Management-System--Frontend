@@ -38,7 +38,7 @@ const DoctorHome  = () =>{
           { headers: { authorization: token } }
         );
         setDoctorProfile(profileResponse.data.doctor)
-        console.log(profileResponse.data.doctor)
+        // console.log(profileResponse.data.doctor)
 
         //fetch patients
         const appointmentsResponse = await axios.get('http://localhost:2000/api/viewPatientAppointment',

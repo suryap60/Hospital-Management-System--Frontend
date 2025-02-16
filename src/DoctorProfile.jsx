@@ -104,14 +104,14 @@ const DoctorProfile = ({ doctorProfile, setDoctorProfile }) => {
                 <p className="pt-5 text-xl">Personal Information</p>
                 <div className="py-2">
                   <div className="md:flex lg:flex justify-between gap-3">
-                    <div className="flex items-center gap-2 py-2 block w-full rounded-md mt-2  bg-blue-50 sm:text-sm transition duration-300 ease-in-out hover:-translate-y-1">
+                    <div className="flex items-center cursor-pointer gap-2 py-2 block w-full rounded-md mt-2  bg-blue-50 sm:text-sm transition duration-300 ease-in-out hover:-translate-y-1">
                         <BriefcaseMedical className="w-8 h-8 text-red-700 mx-4" />
                         <div className="px-3">
                           <label>Experiance</label>
                           <p className="text-lg py-1">{doctorProfile?.experiance}+ years</p>
                         </div>
                     </div>
-                    <div className="flex items-center gap-2 py-2 block w-full rounded-md mt-2  bg-blue-50 sm:text-sm transition duration-300 ease-in-out hover:-translate-y-1">
+                    <div className="flex items-center cursor-pointer gap-2 py-2 block w-full rounded-md mt-2  bg-blue-50 sm:text-sm transition duration-300 ease-in-out hover:-translate-y-1">
                         <Hospital className="w-8 h-8 text-green-700 mx-4" />
                         <div className="px-3">
                           <label >Department</label> 
@@ -120,14 +120,14 @@ const DoctorProfile = ({ doctorProfile, setDoctorProfile }) => {
                     </div>
                   </div>
                   <div className="md:flex lg:flex justify-between gap-3 mt-4">
-                    <div className="flex items-center gap-2 py-2 block w-full rounded-md mt-2  bg-blue-50 sm:text-sm transition duration-300 ease-in-out hover:-translate-y-1">
+                    <div className="flex items-center cursor-pointer gap-2 py-2 block w-full rounded-md mt-2  bg-blue-50 sm:text-sm transition duration-300 ease-in-out hover:-translate-y-1">
                         <Mail className="w-8 h-8 text-gray-600 mx-4" />
                         <div className="px-3">
                           <label>Email Address</label>
                         <p className="text-lg py-1">{doctorProfile?.email}</p>
                         </div>
                     </div>
-                    <div className="flex items-center gap-2 py-2 block w-full rounded-md mt-2  bg-blue-50 sm:text-sm transition duration-300 ease-in-out hover:-translate-y-1">
+                    <div className="flex items-center cursor-pointer gap-2 py-2 block w-full rounded-md mt-2  bg-blue-50 sm:text-sm transition duration-300 ease-in-out hover:-translate-y-1">
                         <Phone className="w-8 h-8 text-blue-600 mx-4" />
                         <div className="px-3">
                           <label>Phone Number</label>
@@ -158,7 +158,7 @@ const DoctorProfile = ({ doctorProfile, setDoctorProfile }) => {
             <h1 className="font-semibold text-3xl text-blue-700 md:text-3xl pt-4">
               Edit Profile
             </h1>
-            <div className="rounded-2xl drop-shadow-lg border justify-center lg:w-3/4 px-6 py-6 mt-4  lg:flex md:flex h-full ">
+            <div className="rounded-2xl drop-shadow-lg border justify-center lg:w-3/4 px-6 py-6 mt-4  lg:flex md:flex h-full">
               <div className="w-full justify-center">
                   <div className="flex flex-col py-2 w-full">
                     <label className="font-semibold text-lg">Full Name</label>

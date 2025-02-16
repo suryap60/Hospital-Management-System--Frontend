@@ -6,11 +6,14 @@ import axios from "axios"
 import { useState } from "react"
 import Swal from "sweetalert2"
 import backgroundImageLogin from './images/adminLogin.jpg'
+import { Eye, EyeOff } from "lucide-react"
 
 
 const AdminLogin = ()=>{
 
     const [isLogin, setisLogin] = useState(false)
+    const [showPassword, setShowPassword] = useState(false)
+
 
     const navigation = useNavigate()
 
@@ -119,7 +122,7 @@ const AdminLogin = ()=>{
                                             onChange={handleChange}
                                             onBlur={handleBlur}
                                             required
-                                            className="block w-full rounded-md mt-2  bg-sky-200 py-2.5 focus:outline-blue-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm/6"
+                                            className="block w-full px-4 rounded-md mt-2  bg-sky-200 py-2.5 focus:outline-blue-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm/6"
                                             />
                                             {touched.email && errors.email ? (
                                                 <p className="text-red-500 text-sm mt-1">{errors.email}</p>
@@ -127,19 +130,31 @@ const AdminLogin = ()=>{
                                         </div>
                                         <div className="flex flex-col">
                                             <label className="mt-5">Password</label>
-                                            <input 
-                                            type="password"
-                                            autoComplete="off"
-                                            name="password"
-                                            value={values.password}
-                                            onChange={handleChange}
-                                            onBlur={handleBlur}
-                                            required
-                                            className="block w-full rounded-md mt-2  bg-sky-200 px-3 py-2.5 focus:outline-blue-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm/6"
-                                            />
-                                            {touched.password && errors.password ? (
-                                                <p className="text-red-500 text-sm mt-1">{errors.password}</p>
-                                            ) : null}
+                                            <div className="relative h-12">
+                                                <input 
+                                                type={showPassword? 'text' : 'password'}
+                                                autoComplete="off"
+                                                name="password"
+                                                value={values.password}
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                                required
+                                                className="block w-full px-4 rounded-md mt-2  bg-sky-200 px-3 py-2.5 focus:outline-blue-400 focus:outline text-base  border-slate-400 text-gray-900  placeholder:text-gray-800 focus:outline focus:outline-none sm:text-sm/6"
+                                                />
+                                                {touched.password && errors.password ? (
+                                                    <p className="text-red-500 text-sm mt-1">{errors.password}</p>
+                                                ) : null}
+
+                                                {/* Show/Hide Password Toggle */}
+                                                <button 
+                                                    type="button" 
+                                                    onClick={() => setShowPassword(!showPassword)}
+                                                    className="absolute right-3 top-1/4 pt-2 text-black"
+                                                >
+                                                    {showPassword ? <EyeOff/> : <Eye/>}
+                                                </button>
+
+                                            </div>
                                         </div>
                                         <div className="text-sm mt-1 items-end">
                                             <Link to='/adminForgotPassword'  

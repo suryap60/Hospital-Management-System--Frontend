@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Activity, X, Menu, UserCircle ,LogOut, CalendarDays ,CalendarHeart  , Users, HeartPulse } from "lucide-react";
+import { Activity, X, Menu, UserCircle ,LogOut, CalendarDays ,CalendarHeart, HeartPulse, Accessibility, Users } from "lucide-react";
 import { useEffect, useState } from "react"
 import { DoctorDashboard } from "./DoctorDashboard";
 import { DoctorAppointments } from "./DoctorAppointments";
@@ -13,14 +13,13 @@ const DoctorHome  = () =>{
   const [doctorProfile, setDoctorProfile] = useState({});
   const [appointments, setAppointments] = useState([]);
   const [patients, setPatients] = useState([])
-  // const [isLogout, setIsLogout] = useState(false)
   const [stats, setStats] = useState([])
   const [activePage,setActivePage] = useState('dashboard')
 
   const navigation = [
     { name: 'Dashboard', icon:Activity , id:'dashboard'},
-    { name: 'Appointments', icon:CalendarHeart   , id:'appointments'},
-    { name: 'Patients', icon:Users , id:'patients'},
+    { name: 'Appointments', icon:CalendarHeart, id:'appointments'},
+    { name: 'Patients', icon:Accessibility , id:'patients'},
   ]
   
 
@@ -74,8 +73,6 @@ const DoctorHome  = () =>{
     localStorage.removeItem('authToken')
     window.location.href = '/loginDoctor'
   }
-
-  
 
 
   return (
@@ -180,8 +177,7 @@ const DoctorHome  = () =>{
 
         </div>
       </div>
-       
-       
+  
     </div>
  
   )

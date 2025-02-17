@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FilterIcon, SearchIcon } from "lucide-react"
+import { SearchIcon } from "lucide-react"
 import { useEffect, useState } from "react"
 
 const ViewAllPatients = ({patients =[], setPatients})=>{

@@ -6,6 +6,7 @@ import { AdminViewAllAppointments } from "./AdminViewAllAppointments";
 import { AdminViewAllDoctors } from "./AdminViewAllDoctors";
 import { AdminViewAllPatients } from "./AdminViewAllPatients";
 import { AdminViewAllNurses } from "./AdminViewAllNurses";
+import { AdminProfile } from "./AdminProfile";
 
 const AdminHome = ()=>{
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -183,6 +184,7 @@ const AdminHome = ()=>{
                     { activePage == 'doctors' && <AdminViewAllDoctors doctors={doctors} setDoctors={setDoctors}/> }
                     { activePage == 'patients' && <AdminViewAllPatients patients={patients} setPatients={setPatients}/> }
                     { activePage == 'nurses' && <AdminViewAllNurses nurses={nurses} setNurses={setNurses}/>}
+                    { activePage == 'profile' && <AdminProfile adminProfile={adminProfile} setAdminProfile={setAdminProfile}/>}
                 </div>
             </div>
 
